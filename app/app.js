@@ -3,8 +3,8 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 
-import SignUp from "./components/signup.js";
-import LoginPage from "./components/loginpage.js";
+import SignUp from "./pages/signup.js";
+import LoginPage from "./pages/loginpage.js";
 
 const styles = StyleSheet.create({
   container: {
