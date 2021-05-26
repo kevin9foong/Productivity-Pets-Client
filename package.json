@@ -44,10 +44,5 @@
   "private": false,
   "lint-staged": {
     "app/**/*.{js,jsx,ts,tsx}": ["eslint --ext \".js,.ts\" --fix"]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   }
 }
