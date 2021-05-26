@@ -1,11 +1,5 @@
-import React, { Component } from 'react'
-import {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  Button
-} from 'react-native'
+import React from 'react';
+import { Alert, View, Text, TextInput, StyleSheet, Button } from 'react-native';
 
 const styles = StyleSheet.create({
   textinput: {
@@ -16,45 +10,51 @@ const styles = StyleSheet.create({
   link: {
     color: 'blue'
   }
-})
+});
 
-class SignUp extends Component {
-  constructor (props) {
-    super(props)
-    this.state.username = ''
-    this.state.password = ''
-    this.state.confirmPwd = ''
-    this.state.disabled = true
+type SignUpProps = {
+  handlePage: (page: string) => void;
+};
+
+type SignUpState = {
+  username: string;
+  password: string;
+  confirmPassword: string;
+  disabled: boolean;
+};
+
+class SignUp extends React.Component<SignUpProps, SignUpState> {
+  constructor (props: SignUpProps) {
+    super(props);
+    this.state = {
+      username: '',
+      password: '',
+      confirmPassword: '',
+      disabled: true
+    };
   }
 
-  state = {
-    username: String,
-    password: String,
-    confirmPwd: String,
-    disabled: Boolean
+  handleUsername = (text: string) => {
+    this.setState({ username: text }, () => this.toggleDisable());
   };
 
-  handleUsername = (text) => {
-    this.setState({ username: text }, () => this.toggleDisable())
+  handlePassword = (text: string) => {
+    this.setState({ password: text }, () => this.toggleDisable());
   };
 
-  handlePassword = (text) => {
-    this.setState({ password: text }, () => this.toggleDisable())
-  };
-
-  checkPassword = (text) => {
-    this.setState({ confirmPwd: text }, () => this.toggleDisable())
+  checkPassword = (text: string) => {
+    this.setState({ confirmPassword: text }, () => this.toggleDisable());
   };
 
   toggleDisable = () => {
     if (
       this.state.username === '' ||
       this.state.password === '' ||
-      this.state.confirmPwd !== this.state.password
+      this.state.confirmPassword !== this.state.password
     ) {
-      this.setState({ disabled: true })
+      this.setState({ disabled: true });
     } else {
-      this.setState({ disabled: false })
+      this.setState({ disabled: false });
     }
   };
 
@@ -66,25 +66,24 @@ class SignUp extends Component {
       <View>
         <TextInput
           style={styles.textinput}
-          placeholder="Username"
+          placeholder='Username'
           onChangeText={this.handleUsername}
         />
         <TextInput
           style={styles.textinput}
-          placeholder="Password"
+          placeholder='Password'
           onChangeText={this.handlePassword}
         />
         <TextInput
           style={styles.textinput}
-          placeholder="Confirm Password"
+          placeholder='Confirm Password'
           onChangeText={this.checkPassword}
         />
         <Button
-          title="Sign Up"
+          title='Sign Up'
           disabled={this.state.disabled}
-          onPress={() => alert('signed up')}
+          onPress={() => Alert.alert('signed up')}
         />
-        <br />
         <Text>
           Already have an account?{' '}
           <Text
@@ -95,8 +94,8 @@ class SignUp extends Component {
           </Text>
         </Text>
       </View>
-    )
+    );
   };
 }
 
-export default SignUp
+export default SignUp;
