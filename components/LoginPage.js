@@ -5,6 +5,9 @@ export default function LoginPage(props) {
   const [username, handleUsername] = useState("");
   const [password, handlePassword] = useState("");
 
+  // TODO: make password hidden and hook up button to backend
+  // figure out some way to store credentials locally to
+  // streamline the login process.
   return (
     <View>
       <TextInput

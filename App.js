@@ -11,11 +11,13 @@ export default function App() {
     if (page === "signup") {
       return <SignUp handlePage={togglePage} />;
     } else {
-      // TODO implement Login page
       return <LoginPage handlePage={togglePage} />;
     }
   }
 
+  // TODO: organise files to consolidate login-related pages under
+  // a folder within a pages directory perhaps. Start working on home pages
+  // integrate Kitten UI
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome to Productivity Pets!</Text>

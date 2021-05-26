@@ -48,6 +48,9 @@ class SignUp extends Component {
     }
   };
 
+  // TODO: make passwords and confirm password fields hidden eg. ***
+  // also hook up button to backend to create new user in the backend
+  // and store credentials somewhere locally so no need to log in everytime.
   render = () => {
     return (
       <View>
