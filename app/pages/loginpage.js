@@ -1,9 +1,20 @@
-import React, { useState } from "react";
-import { View, Text, TextInput, Button, StyleSheet } from "react-native";
+import React from 'react'
+import { View, Text, TextInput, Button, StyleSheet } from 'react-native'
 
-export default function LoginPage(props) {
-  const [username, handleUsername] = useState("");
-  const [password, handlePassword] = useState("");
+const styles = StyleSheet.create({
+  textinput: {
+    height: 30,
+    margin: 5,
+    borderBottomWidth: 1
+  },
+  link: {
+    color: 'blue'
+  }
+})
+
+export default function LoginPage (props) {
+  // const [username, handleUsername] = useState('')
+  // const [password, handlePassword] = useState('')
 
   // TODO: make password hidden and hook up button to backend
   // figure out some way to store credentials locally to
@@ -20,25 +31,14 @@ export default function LoginPage(props) {
         placeholder="Password"
         onChangeText={(text) => handlePassword(text)}
       />
-      <Button title="Login" onPress={() => alert("logging in...")} />
+      <Button title="Login" onPress={() => alert('logging in...')} />
       <br />
       <Text>
-        Don't have an account yet?{" "}
-        <Text style={styles.link} onPress={() => props.handlePage("signup")}>
+        Don't have an account yet?{' '}
+        <Text style={styles.link} onPress={() => props.handlePage('signup')}>
           Sign up
         </Text>
       </Text>
     </View>
-  );
+  )
 }
-
-const styles = StyleSheet.create({
-  textinput: {
-    height: 30,
-    margin: 5,
-    borderBottomWidth: 1,
-  },
-  link: {
-    color: "blue",
-  },
-});
