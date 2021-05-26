@@ -21,11 +21,11 @@ etc.
 
 ### 1. Install Expo-CLI.
 
-> `npm install -g expo-cli`
+> `yarn global add expo-cli`
 
 ### 2. Run the development server.
 
-> `npm start`
+> `yarn start`
 
 to start Metro Bundler at port 19002 (http://localhost:19002)
 

@@ -1,10 +1,24 @@
+import { registerRootComponent } from 'expo';
 import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
-import { StyleSheet, View, TextInput, Button, Text } from "react-native";
-import SignUp from "./components/SignUp.js";
-import LoginPage from "./components/LoginPage.js";
+import React from "react";
+import { StyleSheet, View, Text } from "react-native";
 
-export default function App() {
+import SignUp from "./components/signup.js";
+import LoginPage from "./components/loginpage.js";
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  title: {
+    fontSize: 18,
+  },
+});
+
+function App() {
   const [page, togglePage] = React.useState("login");
 
   function pageToDisplay() {
@@ -27,14 +41,4 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  title: {
-    fontSize: 18,
-  },
-});
+registerRootComponent(App);
