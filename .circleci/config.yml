@@ -10,6 +10,7 @@ jobs:
           keys:
             - yarn-packages-{{ checksum "yarn.lock" }}
       - run:
+<<<<<<< HEAD
           name: Install Dependencies
           command: yarn install --immutable
       - save_cache:
@@ -27,4 +28,10 @@ jobs:
         name: Run tests
         command: yarn run test:ci
 
+=======
+          name: Code is present
+          command: |
+                ls -al
+                echo '^^ that is the codebase!' 
+>>>>>>> 9942a46e1eb2d7ce4e0a50e01bf466a21458c18c
 
