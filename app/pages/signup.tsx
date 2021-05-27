@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { Alert, View, Text, TextInput, StyleSheet, Button } from "react-native";
+import React, { useEffect } from 'react';
+import { Alert, View, Text, TextInput, StyleSheet, Button } from 'react-native';
 
 const styles = StyleSheet.create({
   textinput: {
     height: 30,
     margin: 5,
-    borderBottomWidth: 1,
+    borderBottomWidth: 1
   },
   link: {
-    color: "blue",
-  },
+    color: 'blue'
+  }
 });
 
 type SignUpProps = {
@@ -23,14 +23,14 @@ type SignUpProps = {
  *   disabled: boolean;
  * }; */
 
-export default function SignUp(props: SignUpProps) {
-  const [username, handleUsername] = React.useState("");
-  const [password, handlePassword] = React.useState("");
-  const [confirmPwd, checkPassword] = React.useState("");
+export default function SignUp (props: SignUpProps) {
+  const [username, handleUsername] = React.useState('');
+  const [password, handlePassword] = React.useState('');
+  const [confirmPwd, checkPassword] = React.useState('');
   const [disabled, toggleDisable] = React.useState(false);
 
   useEffect(() => {
-    if (username === "" || password === "" || confirmPwd !== password) {
+    if (username === '' || password === '' || confirmPwd !== password) {
       toggleDisable(true);
     } else {
       toggleDisable(false);
@@ -57,11 +57,11 @@ export default function SignUp(props: SignUpProps) {
       <Button
         title="Sign Up"
         disabled={disabled}
-        onPress={() => Alert.alert("signed up")}
+        onPress={() => Alert.alert('signed up')}
       />
       <Text>
-        Already have an account?{" "}
-        <Text style={styles.link} onPress={() => props.handlePage("login")}>
+        Already have an account?{' '}
+        <Text style={styles.link} onPress={() => props.handlePage('login')}>
           Log in
         </Text>
       </Text>
