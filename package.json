@@ -10,7 +10,12 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "format": "eslint app/ --ext \".js,.ts,.jsx,.tsx\" --fix",
-    "postinstall": "husky install"
+    "postinstall": "husky install",
+    "test": "jest --verbose --coverage",
+    "test:update": "jest --verbose --coverage --updateSnapshot",
+    "test:watch": "jest --verbose --watch",
+    "coverage": "jest --verbose --coverage && open ./coverage/lcov-report/index.html",
+    "test:ci": "jest --ci"
   },
   "dependencies": {
     "expo": "~41.0.1",
