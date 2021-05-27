@@ -4,8 +4,10 @@ jobs:
     docker:
       - image: alpine:3.7
     steps:
+      - checkout
       - run:
-          name: The First Step
-          command: |
-            echo 'Hello World!'
-            echo 'This is the delivery pipeline'
+        name: Code is present
+        command: |
+                ls -al
+                echo '^^ that is the codebase!' 
+
