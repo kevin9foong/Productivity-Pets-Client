@@ -2,12 +2,29 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: alpine:3.7
+      - image: node:latest
     steps:
       - checkout
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
       - run:
-        name: Code is present
-        command: |
-                ls -al
-                echo '^^ that is the codebase!' 
+          name: Install Dependencies
+          command: yarn install --immutable
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+      # Currently basic CI pipeline - to be edited in the future
+      - run: 
+          name: Format, compile and test
+          command: |
+            yarn run tsc
+            yarn run eslint
+      - run: 
+        name: Run tests
+        command: yarn run test:ci
+
 
