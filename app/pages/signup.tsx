@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { Alert, View, Text, StyleSheet } from "react-native";
-import { Button, Input } from "@ui-kitten/components";
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { Button, Input } from '@ui-kitten/components';
 
 const styles = StyleSheet.create({
   link: {
-    color: "blue",
-  },
+    color: 'blue'
+  }
 });
 
 type SignUpProps = {
@@ -20,14 +20,14 @@ type SignUpProps = {
  *   disabled: boolean;
  * }; */
 
-export default function SignUp(props: SignUpProps) {
-  const [username, handleUsername] = React.useState("");
-  const [password, handlePassword] = React.useState("");
-  const [confirmPwd, checkPassword] = React.useState("");
-  const [disabled, toggleDisable] = React.useState(false);
+export default function SignUp (props: SignUpProps) {
+  const [username, handleUsername] = useState('');
+  const [password, handlePassword] = useState('');
+  const [confirmPwd, checkPassword] = useState('');
+  const [disabled, toggleDisable] = useState(false);
 
   useEffect(() => {
-    if (username === "" || password === "" || confirmPwd !== password) {
+    if (username === '' || password === '' || confirmPwd !== password) {
       toggleDisable(true);
     } else {
       toggleDisable(false);
@@ -51,15 +51,15 @@ export default function SignUp(props: SignUpProps) {
       <Button
         disabled={disabled}
         onPress={() => {
-          props.handlePage("home");
+          props.handlePage('home');
           props.handleUserName(username);
         }}
       >
         Sign Up
       </Button>
       <Text>
-        Already have an account?{" "}
-        <Text style={styles.link} onPress={() => props.handlePage("login")}>
+        Already have an account?{' '}
+        <Text style={styles.link} onPress={() => props.handlePage('login')}>
           Log in
         </Text>
       </Text>
