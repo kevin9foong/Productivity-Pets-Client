@@ -9,7 +9,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "format": "eslint app/ --ext \".js,.ts\" --fix",
+    "format": "eslint app/ --ext \".js,.ts,.jsx,.tsx\" --fix",
     "postinstall": "husky install"
   },
   "dependencies": {
@@ -48,7 +48,7 @@
   "private": true,
   "lint-staged": {
     "app/**/*.{js,jsx,ts,tsx}": [
-      "yarn eslint --ext \".js,.ts\" --fix"
+      "yarn eslint --ext \".js,.ts,.jsx,.tsx\" --fix"
     ]
   }
 }
