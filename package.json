@@ -48,7 +48,7 @@
   "private": true,
   "lint-staged": {
     "app/**/*.{js,jsx,ts,tsx}": [
-      "eslint --ext \".js,.ts\" --fix"
+      "yarn eslint --ext \".js,.ts\" --fix"
     ]
   }
 }
