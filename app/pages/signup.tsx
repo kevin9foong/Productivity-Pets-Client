@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Alert, View, Text, TextInput, StyleSheet, Button } from "react-native";
+import { Alert, View, Text, StyleSheet } from "react-native";
+import { Button, Input } from "@ui-kitten/components";
 
 const styles = StyleSheet.create({
-  textinput: {
-    height: 30,
-    margin: 5,
-    borderBottomWidth: 1,
-  },
   link: {
     color: "blue",
   },
@@ -14,6 +10,7 @@ const styles = StyleSheet.create({
 
 type SignUpProps = {
   handlePage: (page: string) => void;
+  handleUserName: (name: string) => void;
 };
 
 /* type SignUpState = {
@@ -39,26 +36,27 @@ export default function SignUp(props: SignUpProps) {
 
   return (
     <View>
-      <TextInput
-        style={styles.textinput}
+      <Input
         placeholder="Username"
         onChangeText={(text) => handleUsername(text)}
       />
-      <TextInput
-        style={styles.textinput}
+      <Input
         placeholder="Password"
         onChangeText={(text) => handlePassword(text)}
       />
-      <TextInput
-        style={styles.textinput}
+      <Input
         placeholder="Confirm Password"
         onChangeText={(text) => checkPassword(text)}
       />
       <Button
-        title="Sign Up"
         disabled={disabled}
-        onPress={() => Alert.alert("signed up")}
-      />
+        onPress={() => {
+          props.handlePage("home");
+          props.handleUserName(username);
+        }}
+      >
+        Sign Up
+      </Button>
       <Text>
         Already have an account?{" "}
         <Text style={styles.link} onPress={() => props.handlePage("login")}>

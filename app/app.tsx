@@ -3,10 +3,11 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import * as eva from "@eva-design/eva";
-import { ApplicationProvider, Layout, Text } from "@ui-kitten/components";
+import { ApplicationProvider, Layout, Text, Card } from "@ui-kitten/components";
 
 import SignUp from "./pages/signup";
 import LoginPage from "./pages/loginpage";
+import HomePage from "./pages/home";
 
 type Props = {};
 
@@ -24,12 +25,17 @@ const styles = StyleSheet.create({
 
 const App: React.FC<Props> = () => {
   const [page, togglePage] = React.useState("login");
+  const [username, handleUserName] = React.useState("");
 
   const pageToDisplay = () => {
     if (page === "signup") {
-      return <SignUp handlePage={togglePage} />;
-    } else {
-      return <LoginPage handlePage={togglePage} />;
+      return <SignUp handlePage={togglePage} handleUserName={handleUserName} />;
+    } else if (page === "login") {
+      return (
+        <LoginPage handlePage={togglePage} handleUserName={handleUserName} />
+      );
+    } else if (page === "home") {
+      return <HomePage name={username} />;
     }
   };
 
@@ -39,9 +45,11 @@ const App: React.FC<Props> = () => {
   return (
     <ApplicationProvider {...eva} theme={eva.light}>
       <View style={styles.container}>
-        <Text style={styles.title}>Welcome to Productivity Pets!</Text>
-        {pageToDisplay()}
-        <StatusBar style="auto" />
+        <Card>
+          <Text category="h1">Productivity Pets!</Text>
+          {pageToDisplay()}
+          <StatusBar style="auto" />
+        </Card>
       </View>
     </ApplicationProvider>
   );
