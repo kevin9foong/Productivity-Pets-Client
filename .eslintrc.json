@@ -22,9 +22,18 @@
     "rules": {
         // note you must disable the base rule as it can report incorrect errors
         "no-use-before-define": "off",
-        "@typescript-eslint/no-use-before-define": ["error"],
-        "semi": ["error", "always"]
-      },
+        "@typescript-eslint/no-use-before-define": [
+            "error"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ]
+    },
     "settings": {
         "react": {
             "version": "detect"
