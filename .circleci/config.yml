@@ -24,7 +24,7 @@ jobs:
             yarn run tsc
             yarn run eslint
       - run: 
-        name: Run tests
-        command: yarn run test:ci
+          name: Run tests
+          command: yarn run test:ci
 
 
