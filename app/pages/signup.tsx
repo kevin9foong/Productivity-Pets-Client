@@ -1,11 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { Button, Input } from '@ui-kitten/components';
+import React, { useState, useEffect } from "react";
+import { View, StyleSheet } from "react-native";
+import { Button, Text, Input, Card } from "@ui-kitten/components";
 
 const styles = StyleSheet.create({
-  link: {
-    color: 'blue'
-  }
+  text: {
+    margin: 2,
+  },
+  title: {
+    margin: 5,
+  },
+  card: {
+    width: "90%",
+  },
 });
 
 type SignUpProps = {
@@ -20,14 +26,14 @@ type SignUpProps = {
  *   disabled: boolean;
  * }; */
 
-export default function SignUp (props: SignUpProps) {
-  const [username, handleUsername] = useState('');
-  const [password, handlePassword] = useState('');
-  const [confirmPwd, checkPassword] = useState('');
+export default function SignUp(props: SignUpProps) {
+  const [username, handleUsername] = useState("");
+  const [password, handlePassword] = useState("");
+  const [confirmPwd, checkPassword] = useState("");
   const [disabled, toggleDisable] = useState(false);
 
   useEffect(() => {
-    if (username === '' || password === '' || confirmPwd !== password) {
+    if (username === "" || password === "" || confirmPwd !== password) {
       toggleDisable(true);
     } else {
       toggleDisable(false);
@@ -36,33 +42,43 @@ export default function SignUp (props: SignUpProps) {
 
   return (
     <View>
-      <Input
-        placeholder="Username"
-        onChangeText={(text) => handleUsername(text)}
-      />
-      <Input
-        placeholder="Password"
-        onChangeText={(text) => handlePassword(text)}
-      />
-      <Input
-        placeholder="Confirm Password"
-        onChangeText={(text) => checkPassword(text)}
-      />
-      <Button
-        disabled={disabled}
-        onPress={() => {
-          props.handlePage('home');
-          props.handleUserName(username);
-        }}
-      >
-        Sign Up
-      </Button>
-      <Text>
-        Already have an account?{' '}
-        <Text style={styles.link} onPress={() => props.handlePage('login')}>
-          Log in
+      <Card style={styles.card}>
+        <Text style={styles.title} category="h1">
+          Productivity Pets!
         </Text>
-      </Text>
+        <Input
+          placeholder="Username"
+          onChangeText={(text) => handleUsername(text)}
+        />
+        <Input
+          placeholder="Password"
+          onChangeText={(text) => handlePassword(text)}
+        />
+        <Input
+          placeholder="Confirm Password"
+          onChangeText={(text) => checkPassword(text)}
+        />
+        <Button
+          disabled={disabled}
+          appearance="outline"
+          onPress={() => {
+            props.handlePage("home");
+            props.handleUserName(username);
+          }}
+        >
+          Sign Up
+        </Button>
+        <Text style={styles.text} appearance="hint" category="c1">
+          Already have an account?{" "}
+          <Text
+            status="primary"
+            appearance="ghost"
+            onPress={() => props.handlePage("login")}
+          >
+            Log in
+          </Text>
+        </Text>
+      </Card>
     </View>
   );
 }

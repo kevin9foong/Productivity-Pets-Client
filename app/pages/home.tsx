@@ -1,11 +1,25 @@
-import React, { useState } from 'react';
-import { Text, Button, Card } from '@ui-kitten/components';
-import { View } from 'react-native';
+import React from "react";
+import { Text, Card } from "@ui-kitten/components";
+import { View, StyleSheet } from "react-native";
 
-export default function homePage (props) {
+const styles = StyleSheet.create({
+  title: {
+    margin: 5,
+  },
+  card: {
+    width: "90%",
+  },
+});
+
+export default function homePage(props: Object) {
   return (
     <View>
-      <Text>Welcome to your homepage, {props.name}</Text>
+      <Card style={styles.card}>
+        <Text style={styles.title} category="h1">
+          Productivity Pets!
+        </Text>
+        <Text>Welcome to your homepage, {props.name}</Text>
+      </Card>
     </View>
   );
 }
