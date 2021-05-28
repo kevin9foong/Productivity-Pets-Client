@@ -1,17 +1,17 @@
-import React from "react";
-import { Text, Card } from "@ui-kitten/components";
-import { View, StyleSheet } from "react-native";
+import React from 'react';
+import { Text, Card } from '@ui-kitten/components';
+import { View, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   title: {
-    margin: 5,
+    margin: 5
   },
   card: {
-    width: "90%",
-  },
+    width: '90%'
+  }
 });
 
-export default function homePage(props: Object) {
+export default function homePage (props: Object) {
   return (
     <View>
       <Card style={styles.card}>
