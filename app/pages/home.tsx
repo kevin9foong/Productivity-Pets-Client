@@ -11,7 +11,11 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function homePage (props: Object) {
+type homePageProps = {
+  name: string
+}
+
+export default function homePage (props: homePageProps) {
   return (
     <View>
       <Card style={styles.card}>
