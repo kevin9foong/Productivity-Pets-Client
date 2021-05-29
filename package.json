@@ -18,7 +18,9 @@
     "test:ci": "jest --ci"
   },
   "dependencies": {
+    "@eva-design/eva": "^2.1.0",
     "@react-native-community/masked-view": "0.1.10",
+    "@ui-kitten/components": "^5.1.0",
     "expo": "~41.0.1",
     "expo-status-bar": "~1.0.4",
     "react": "16.13.1",
