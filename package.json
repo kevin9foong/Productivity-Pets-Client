@@ -14,12 +14,14 @@
     "test": "jest --verbose --coverage",
     "test:update": "jest --verbose --coverage --updateSnapshot",
     "test:watch": "jest --verbose --watch",
-    "coverage": "jest --verbose --coverage && open ./coverage/lcov-report/index.html",
-    "test:ci": "jest --ci"
+    "test:ci": "jest --ci --passWithNoTests",
+    "coverage": "jest --verbose --coverage && open ./coverage/lcov-report/index.html"
   },
   "dependencies": {
+    "@eva-design/eva": "^2.1.0",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/stack": "^5.14.5",
+    "@ui-kitten/components": "^5.1.0",
     "expo": "~41.0.1",
     "expo-secure-store": "~10.1.0",
     "expo-status-bar": "~1.0.4",
