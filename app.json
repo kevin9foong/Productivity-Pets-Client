@@ -1,6 +1,5 @@
 {
   "expo": {
-    "entrypoint": "./app/app.js",
     "name": "ProductivityPets",
     "slug": "ProductivityPets",
     "version": "1.0.0",
