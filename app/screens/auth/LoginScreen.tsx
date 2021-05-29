@@ -1,24 +1,22 @@
 import React, { useState } from 'react';
-import {
-  View
-} from 'react-native';
+import { Layout } from '@ui-kitten/components';
 // import * as WebBrowser from 'expo-web-browser';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 // import { googleAuthUrl } from '../../config/loginconfig';
-import googleLoginStyles from '../../styles/googlelogin.styles';
-import IconButton from '../../components/iconbutton';
-import LoginAvatar from '../../components/loginavatar';
+import googleLoginStyles from '../../styles/Login.Styles';
+import IconButton from '../../components/IconButton';
+import LoginAvatar from '../../components/LoginAvatar';
 import { IUser } from '../../types/UserTypes';
-import { RootStackParamList } from '../../rootstackparams';
+import { RootStackParamList } from '../../RootStackParams';
 
 type LoginNavigationProps = StackNavigationProp<RootStackParamList, 'Login'>;
 
-type LoginProps = {
+type LoginScreenProps = {
   navigation: LoginNavigationProps
 }
 
-const Login: React.FC<LoginProps> = ({ navigation }: LoginProps) => {
+const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }: LoginScreenProps) => {
   const [user] = useState<IUser | undefined>(undefined);
 
   const handleGoogleLogin = () => navigation.navigate('Home');
@@ -27,7 +25,7 @@ const Login: React.FC<LoginProps> = ({ navigation }: LoginProps) => {
   // };
 
   return (
-    <View style={googleLoginStyles.container}>
+    <Layout style={googleLoginStyles.container}>
         <LoginAvatar
             greetingMessage={user ? `Welcome ${user.name}` : 'Welcome Stranger!'}
             avatarImgSource={user?.avatarUri}
@@ -38,8 +36,8 @@ const Login: React.FC<LoginProps> = ({ navigation }: LoginProps) => {
             buttonText='Login with Google'
             handleButtonPress={handleGoogleLogin}
             />
-    </View>
+    </Layout>
   );
 };
 
-export default Login;
+export default LoginScreen;

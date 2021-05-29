@@ -7,11 +7,11 @@ import * as eva from '@eva-design/eva';
 import { ApplicationProvider } from '@ui-kitten/components';
 
 // our own imports ->
-import { RootStackParamList } from './rootstackparams';
+import { RootStackParamList } from './RootStackParams';
 
 // For Zach: please replace this dummy home here! :)
-import DummyHome from './screens/main/dummyhome';
-import GoogleLogin from './screens/auth/login';
+import HomeScreen from './screens/main/HomeScreen';
+import LoginScreen from './screens/auth/LoginScreen';
 
 type Props = {};
 
@@ -23,8 +23,8 @@ const App: React.FC<Props> = () => {
     <ApplicationProvider {...eva} theme={eva.dark}>
       <NavigationContainer>
         <RootStack.Navigator initialRouteName='Login'>
-          <RootStack.Screen name="Home" component={DummyHome} />
-          <RootStack.Screen name="Login" component={GoogleLogin} />
+          <RootStack.Screen name="Home" component={HomeScreen} />
+          <RootStack.Screen name="Login" component={LoginScreen} />
         </RootStack.Navigator>
       </NavigationContainer>
     </ApplicationProvider>
