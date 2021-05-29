@@ -1,11 +1,11 @@
 import React from 'react';
 import {
   Image,
-  Text,
   View
 } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import styles from '../styles/loginavatar.styles';
+import { Text } from '@ui-kitten/components';
 
 type LoginAvatarProps = {
     greetingMessage: string,

@@ -1,8 +1,12 @@
+// official imports -> 3rd party imports
 import { registerRootComponent } from 'expo';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import * as eva from '@eva-design/eva';
+import { ApplicationProvider } from '@ui-kitten/components';
 
+// our own imports ->
 import { RootStackParamList } from './rootstackparams';
 
 // For Zach: please replace this dummy home here! :)
@@ -16,12 +20,14 @@ const App: React.FC<Props> = () => {
   const RootStack = createStackNavigator<RootStackParamList>();
 
   return (
-    <NavigationContainer>
-      <RootStack.Navigator initialRouteName='Login'>
-        <RootStack.Screen name="Home" component={DummyHome} />
-        <RootStack.Screen name="Login" component={GoogleLogin} />
-      </RootStack.Navigator>
-    </NavigationContainer>
+    <ApplicationProvider {...eva} theme={eva.dark}>
+      <NavigationContainer>
+        <RootStack.Navigator initialRouteName='Login'>
+          <RootStack.Screen name="Home" component={DummyHome} />
+          <RootStack.Screen name="Login" component={GoogleLogin} />
+        </RootStack.Navigator>
+      </NavigationContainer>
+    </ApplicationProvider>
   );
 };
 
