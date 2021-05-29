@@ -52,12 +52,12 @@ export default function SignUp (props: SignUpProps) {
         />
         <Input
           placeholder="Password"
-          secureTextEntry="true"
+          secureTextEntry={true}
           onChangeText={(text) => handlePassword(text)}
         />
         <Input
           placeholder="Confirm Password"
-          secureTextEntry="true"
+          secureTextEntry={true}
           onChangeText={(text) => checkPassword(text)}
         />
         <Button

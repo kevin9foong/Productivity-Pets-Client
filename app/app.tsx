@@ -37,17 +37,20 @@ const App: React.FC<Props> = () => {
     {
       id: 0,
       title: 'go to the gym',
-      desc: ''
+      desc: '',
+      date: new Date()
     },
     {
       id: 1,
       title: 'finish CS2040S problem set',
-      desc: ''
+      desc: '',
+      date: new Date()
     },
     {
       id: 2,
       title: 'buy birthday present for Mom',
-      desc: ''
+      desc: '',
+      date: new Date()
     }
   ]);
 

@@ -39,7 +39,7 @@ const LoginPage = ({ handlePage, handleUserName }: LoginPageProps) => {
         />
         <Input
           placeholder="Password"
-          secureTextEntry="true"
+          secureTextEntry={true}
           value={password}
           onChangeText={(text) => handlePassword(text)}
         />
