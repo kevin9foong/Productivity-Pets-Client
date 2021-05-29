@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Icon,
   Text,
@@ -7,17 +7,17 @@ import {
   ListItem,
   List,
   ButtonGroup,
-  Button,
-} from "@ui-kitten/components";
-import { View, StyleSheet } from "react-native";
+  Button
+} from '@ui-kitten/components';
+import { View, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   title: {
-    margin: 5,
+    margin: 5
   },
   card: {
-    width: "90%",
-  },
+    width: '90%'
+  }
 });
 
 type propObject = {
@@ -25,7 +25,7 @@ type propObject = {
   todos: Array;
 };
 
-export default function homePage(props: propObject) {
+export default function homePage (props: propObject) {
   let todoList;
 
   const renderItem = ({ item, index }) => (
