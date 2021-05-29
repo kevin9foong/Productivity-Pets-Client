@@ -5,7 +5,7 @@ import {
   View
 } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
-import styles from '../../styles/loginavatar.styles';
+import styles from '../styles/loginavatar.styles';
 
 type LoginAvatarProps = {
     greetingMessage: string,

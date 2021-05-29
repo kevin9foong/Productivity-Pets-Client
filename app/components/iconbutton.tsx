@@ -3,7 +3,7 @@ import {
   View
 } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
-import styles from '../../styles/iconbutton.styles';
+import styles from '../styles/iconbutton.styles';
 
 type IconButtonProps = {
     iconName: keyof typeof FontAwesome.glyphMap,
