@@ -1,9 +1,7 @@
 import React from 'react';
-import {
-  View
-} from 'react-native';
+import { Layout } from '@ui-kitten/components';
 import { FontAwesome } from '@expo/vector-icons';
-import styles from '../styles/iconbutton.styles';
+import styles from '../styles/IconButton.Styles';
 
 type IconButtonProps = {
     iconName: keyof typeof FontAwesome.glyphMap,
@@ -13,16 +11,16 @@ type IconButtonProps = {
 
 const IconButton: React.FC<IconButtonProps> = ({ iconName, handleButtonPress, buttonText }: IconButtonProps) => {
   return (
-        <View style={styles.container}>
-            <View style={styles.buttons}>
+        <Layout style={styles.container}>
+            <Layout style={styles.buttons}>
                 <FontAwesome.Button
                     name={iconName}
                     backgroundColor='#DD4B39'
                     onPress={handleButtonPress}>
                         {buttonText}
                 </FontAwesome.Button>
-            </View>
-        </View>
+            </Layout>
+        </Layout>
   );
 };
 

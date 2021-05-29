@@ -9,6 +9,7 @@ import IconButton from '../../components/IconButton';
 import LoginAvatar from '../../components/LoginAvatar';
 import { IUser } from '../../types/UserTypes';
 import { RootStackParamList } from '../../RootStackParams';
+import AuthContext from '../../context/AuthContext';
 
 type LoginNavigationProps = StackNavigationProp<RootStackParamList, 'Login'>;
 
@@ -17,9 +18,11 @@ type LoginScreenProps = {
 }
 
 const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }: LoginScreenProps) => {
+  const { signIn } = React.useContext(AuthContext);
+
   const [user] = useState<IUser | undefined>(undefined);
 
-  const handleGoogleLogin = () => navigation.navigate('Home');
+  // const handleGoogleLogin = () => navigation.navigate('Home');
   // const handleGoogleLogin = () => {
   //   return WebBrowser.openBrowserAsync(googleAuthUrl);
   // };
@@ -34,7 +37,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }: LoginScreenProp
         <IconButton
             iconName='google'
             buttonText='Login with Google'
-            handleButtonPress={handleGoogleLogin}
+            handleButtonPress={signIn}
             />
     </Layout>
   );
