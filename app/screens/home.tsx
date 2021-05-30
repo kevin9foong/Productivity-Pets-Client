@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Icon,
   Text,
@@ -10,34 +10,34 @@ import {
   Button,
   Modal,
   Input,
-  Datepicker
-} from '@ui-kitten/components';
-import { View, StyleSheet, Keyboard } from 'react-native';
+  Datepicker,
+} from "@ui-kitten/components";
+import { View, StyleSheet, Keyboard } from "react-native";
 
 const styles = StyleSheet.create({
   title: {
-    margin: 5
+    margin: 5,
   },
   card: {
-    width: '90%'
+    width: "90%",
   },
   backdrop: {
-    backgroundColor: 'rgba(0, 0, 0, 0.5)'
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
   modal: {
-    flexDirection: 'column',
-    justifyContent: 'center'
+    flexDirection: "column",
+    justifyContent: "center",
   },
   input: {
-    flex: 1
+    flex: 1,
   },
   buttongroup: {
-    flexDirection: 'row',
-    justifyContent: 'space-around'
+    flexDirection: "row",
+    justifyContent: "space-around",
   },
   button: {
-    flex: 1
-  }
+    flex: 1,
+  },
 });
 
 type propObject = {
@@ -45,12 +45,12 @@ type propObject = {
   todos: Array;
 };
 
-export default function homePage (props: propObject) {
+const homePage = (props: propObject) => {
   let todoList;
   const [showForm, toggleShowForm] = React.useState(false);
   const [date, setDate] = React.useState(new Date());
-  const [newTitle, handleTitle] = React.useState('');
-  const [newDesc, handleDesc] = React.useState('');
+  const [newTitle, handleTitle] = React.useState("");
+  const [newDesc, handleDesc] = React.useState("");
 
   // Creates each todo list item
   const renderItem = ({ item, index }) => (
@@ -87,10 +87,10 @@ export default function homePage (props: propObject) {
       id: props.todos.length,
       title: newTitle,
       desc: newDesc,
-      date: date
+      date: date,
     });
-    handleTitle('');
-    handleDesc('');
+    handleTitle("");
+    handleDesc("");
     setDate(new Date());
     toggleShowForm(false);
     return props.todos;
@@ -163,4 +163,6 @@ export default function homePage (props: propObject) {
       </Card>
     </View>
   );
-}
+};
+
+export default homePage;

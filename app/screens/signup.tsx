@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { View, StyleSheet } from 'react-native';
-import { Button, Text, Input, Card } from '@ui-kitten/components';
+import React, { useState, useEffect } from "react";
+import { View, StyleSheet } from "react-native";
+import { Button, Text, Input, Card } from "@ui-kitten/components";
 
 const styles = StyleSheet.create({
   text: {
-    margin: 2
+    margin: 2,
   },
   title: {
-    margin: 5
+    margin: 5,
   },
   card: {
-    width: '90%'
-  }
+    width: "90%",
+  },
 });
 
 type SignUpProps = {
@@ -19,21 +19,14 @@ type SignUpProps = {
   handleUserName: (name: string) => void;
 };
 
-/* type SignUpState = {
- *   username: string;
- *   password: string;
- *   confirmPassword: string;
- *   disabled: boolean;
- * }; */
-
-export default function SignUp (props: SignUpProps) {
-  const [username, handleUsername] = useState('');
-  const [password, handlePassword] = useState('');
-  const [confirmPwd, checkPassword] = useState('');
+const SignUp = (props: SignUpProps) => {
+  const [username, handleUsername] = useState("");
+  const [password, handlePassword] = useState("");
+  const [confirmPwd, checkPassword] = useState("");
   const [disabled, toggleDisable] = useState(false);
 
   useEffect(() => {
-    if (username === '' || password === '' || confirmPwd !== password) {
+    if (username === "" || password === "" || confirmPwd !== password) {
       toggleDisable(true);
     } else {
       toggleDisable(false);
@@ -64,18 +57,18 @@ export default function SignUp (props: SignUpProps) {
           disabled={disabled}
           appearance="outline"
           onPress={() => {
-            props.handlePage('home');
+            props.handlePage("home");
             props.handleUserName(username);
           }}
         >
           Sign Up
         </Button>
         <Text style={styles.text} appearance="hint" category="c1">
-          Already have an account?{' '}
+          Already have an account?{" "}
           <Text
             status="primary"
             appearance="ghost"
-            onPress={() => props.handlePage('login')}
+            onPress={() => props.handlePage("login")}
           >
             Log in
           </Text>
@@ -83,4 +76,6 @@ export default function SignUp (props: SignUpProps) {
       </Card>
     </View>
   );
-}
+};
+
+export default SignUp;
