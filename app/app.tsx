@@ -1,33 +1,20 @@
 // official imports -> 3rd party imports
 import { registerRootComponent } from 'expo';
 import React, { useEffect, useMemo, useReducer } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import * as eva from '@eva-design/eva';
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 
 // our own imports ->
-import { RootStackParamList } from './RootStackParams';
 // import { save, getValueFor } from './utils/SecureStore';
 
-// For Zach: please replace this dummy home here! :)
-import HomeScreen from './screens/main/HomeScreen';
-import LoginScreen from './screens/auth/LoginScreen';
+import Router from './router';
 import SplashScreen from './screens/misc/SplashScreen';
 import AuthContext from './context/AuthContext';
 
 type Props = {};
 
 const App: React.FC<Props> = () => {
-  // the 'Root' stack is the main stack of our program
-  const RootStack = createStackNavigator<RootStackParamList>();
-
-  // check if user is logged in
-  // const [isLoading, setIsLoading] = useState<boolean>(true);
-  // used to auth user
-  // const [userToken, setUserToken] = useState<string | null>(null);
-
   const initialAuthState = {
     isLoading: false,
     userName: null,
@@ -84,16 +71,10 @@ const App: React.FC<Props> = () => {
         <IconRegistry icons={EvaIconsPack} />
         <ApplicationProvider {...eva} theme={eva.light}>
           {authState.isLoading
+          // TODO: fix splash screen with expo splash screen
             ? <SplashScreen />
             : <AuthContext.Provider value={authContext}>
-              <NavigationContainer>
-                <RootStack.Navigator>
-                { authState.userToken
-                  ? <RootStack.Screen name="Home" component={HomeScreen} />
-                  : <RootStack.Screen name="Login" component={LoginScreen} />
-                }
-                </RootStack.Navigator>
-              </NavigationContainer>
+                <Router isLoggedIn={authState.userToken}/>
             </AuthContext.Provider>}
         </ApplicationProvider>
       </>
