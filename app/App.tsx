@@ -78,6 +78,7 @@ const App: React.FC<Props> = () => {
       // auth data including access token
       const { authentication } = res;
       if (authentication?.accessToken) {
+        console.log(authentication);
         save('userToken', authentication.accessToken)
           .then(() => dispatch({ type: 'LOGIN', id: 'Kevin', token: authentication.accessToken }))
           .catch(err => console.log(err));

@@ -16,6 +16,7 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "scheme": "exp",
     "ios": {
       "supportsTablet": true
     },
