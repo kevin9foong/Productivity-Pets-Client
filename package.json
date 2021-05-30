@@ -1,5 +1,5 @@
 {
-  "main": "./app/app.tsx",
+  "main": "./app/App.tsx",
   "scripts-info": {
     "postinstall": "Automatically sets up husky hooks after yarn install"
   },
