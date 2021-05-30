@@ -6,7 +6,7 @@ import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 
 // our own imports ->
-// import { save, getValueFor } from './utils/SecureStore';
+import { save, getValueFor } from './utils/SecureStore';
 
 import Router from './Router';
 import SplashScreen from './screens/misc/SplashScreen';
@@ -50,20 +50,20 @@ const App: React.FC<Props> = () => {
 
   const authContext = useMemo(() => ({
     signIn: async () => {
-      // await save('userToken', 'sdada');
+      await save('userToken', 'sdada');
       dispatch({ type: 'LOGIN', id: 'Kevin', token: 'sdada' });
     },
     signOut: () => {
-      dispatch({ type: 'LOGIN', id: null, token: null });
+      dispatch({ type: 'LOGOUT' });
     }
   }), []);
 
   useEffect(() => {
-    // getValueFor('userToken').then(
-    //   tokenVal => {
-    //     dispatch({ type: 'RETRIEVE_TOKEN', token: tokenVal });
-    //   }
-    // );
+    getValueFor('userToken').then(
+      tokenVal => {
+        dispatch({ type: 'RETRIEVE_TOKEN', token: tokenVal });
+      }
+    );
   }, []);
 
   return (
