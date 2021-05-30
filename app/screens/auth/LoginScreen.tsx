@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 import { Layout } from '@ui-kitten/components';
-// import * as WebBrowser from 'expo-web-browser';
-
-// import { googleAuthUrl } from '../../config/loginconfig';
 import LoginStyles from '../../styles/Login.Styles';
 import IconButton from '../../components/IconButton';
 import LoginAvatar from '../../components/LoginAvatar';
