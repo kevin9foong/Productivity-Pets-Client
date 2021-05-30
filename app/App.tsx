@@ -4,6 +4,8 @@ import React, { useEffect, useMemo, useReducer } from 'react';
 import * as eva from '@eva-design/eva';
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
+import * as WebBrowser from 'expo-web-browser';
+import * as Google from 'expo-auth-session/providers/google';
 
 // our own imports ->
 import { save, getValueFor } from './utils/SecureStore';
@@ -14,10 +16,18 @@ import AuthContext from './context/AuthContext';
 
 type Props = {};
 
+WebBrowser.maybeCompleteAuthSession();
+
 const App: React.FC<Props> = () => {
+  const [request, res, promptAsync] = Google.useAuthRequest({
+    // TODO: migrate this to env
+    expoClientId: '455617521342-vs3pab8tkpp2stpsc71ruuq2nqteer98.apps.googleusercontent.com',
+    webClientId: '455617521342-htliucvfap8nuqqoid8l31k463luh0ii.apps.googleusercontent.com'
+  });
+
   const initialAuthState = {
-    isLoading: false,
-    userName: null,
+    isLoading: true,
+    // userName: null,
     userToken: null
   };
 
@@ -32,7 +42,6 @@ const App: React.FC<Props> = () => {
       case 'LOGIN':
         return {
           ...prevState,
-          userName: action.id,
           userToken: action.token,
           isLoading: false
         };
@@ -40,7 +49,6 @@ const App: React.FC<Props> = () => {
         return {
           ...prevState,
           userToken: null,
-          userName: null,
           isLoading: false
         };
     }
@@ -49,28 +57,39 @@ const App: React.FC<Props> = () => {
   const [authState, dispatch] = useReducer(authReducer, initialAuthState);
 
   const authContext = useMemo(() => ({
-    signIn: async () => {
-      await save('userToken', 'sdada');
-      dispatch({ type: 'LOGIN', id: 'Kevin', token: 'sdada' });
+    signIn: () => {
+      promptAsync();
     },
     signOut: () => {
       dispatch({ type: 'LOGOUT' });
     }
-  }), []);
+  }), [promptAsync]);
 
   useEffect(() => {
     getValueFor('userToken').then(
-      tokenVal => {
-        dispatch({ type: 'RETRIEVE_TOKEN', token: tokenVal });
+      userToken => {
+        dispatch({ type: 'RETRIEVE_TOKEN', userToken: userToken });
       }
     );
   }, []);
+
+  useEffect(() => {
+    if (res?.type === 'success') {
+      // auth data including access token
+      const { authentication } = res;
+      if (authentication?.accessToken) {
+        save('userToken', authentication.accessToken)
+          .then(() => dispatch({ type: 'LOGIN', id: 'Kevin', token: authentication.accessToken }))
+          .catch(err => console.log(err));
+      }
+    }
+  }, [res, request]);
 
   return (
       <>
         <IconRegistry icons={EvaIconsPack} />
         <ApplicationProvider {...eva} theme={eva.light}>
-          {authState.isLoading
+          {!request || authState.isLoading
           // TODO: fix splash screen with expo splash screen
             ? <SplashScreen />
             : <AuthContext.Provider value={authContext}>
