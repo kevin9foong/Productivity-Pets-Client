@@ -12,13 +12,20 @@ import {
   Input,
   Datepicker,
 } from "@ui-kitten/components";
-import { View, StyleSheet, Keyboard } from "react-native";
-import styles from "../../styles/HomePage.Style.tsx";
+import { View, Keyboard } from "react-native";
+import styles from "../../styles/HomePage.Style";
 
-//type propObject = {
-//  name: String;
-//  todos: Array;
-//};
+type todoObject = {
+  id: number;
+  title: string;
+  desc: string;
+  date: Date;
+};
+
+type renderitem = {
+  item: todoObject;
+  index: number;
+};
 
 const homePage = () => {
   let todoList;
@@ -48,7 +55,7 @@ const homePage = () => {
   ]);
 
   // Creates each todo list item
-  const renderItem = ({ item, index }) => (
+  const renderItem = ({ item, index }: renderitem) => (
     <ListItem
       title={`${index + 1}: ${item.title}`}
       description={item.desc}
@@ -89,9 +96,9 @@ const homePage = () => {
     return todos;
   };
 
-  const filterIcon = (props) => <Icon {...props} name="funnel" />;
+  const filterIcon = () => <Icon name="funnel" />;
 
-  const addIcon = (props) => <Icon {...props} name="plus" />;
+  const addIcon = () => <Icon name="plus" />;
 
   return (
     <Card style={styles.container}>
@@ -112,7 +119,7 @@ const homePage = () => {
         visible={showForm}
         backdropStyle={styles.backdrop}
         onBackdropPress={() => toggleShowForm(false)}
-        styles={styles.modal}
+        style={styles.modal}
       >
         <Card disabled={true}>
           <Text category="h1">Add a task here</Text>

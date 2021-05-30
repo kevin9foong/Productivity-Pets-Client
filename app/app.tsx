@@ -1,16 +1,10 @@
 // official imports -> 3rd party imports
 import { registerRootComponent } from "expo";
-import { StatusBar } from "expo-status-bar";
-import { ImageBackground, StyleSheet } from "react-native";
 import React, { useEffect, useMemo, useReducer } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import * as eva from "@eva-design/eva";
-import {
-  ApplicationProvider,
-  IconRegistry,
-  Layout,
-} from "@ui-kitten/components";
+import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
 import { EvaIconsPack } from "@ui-kitten/eva-icons";
 
 // our own imports ->
@@ -18,30 +12,14 @@ import { RootStackParamList } from "./RootStackParams";
 // import { save, getValueFor } from './utils/SecureStore';
 
 // For Zach: please replace this dummy home here! :)
-import HomeScreen from "./screens/main/home.tsx";
+import HomeScreen from "./screens/main/home";
 import LoginScreen from "./screens/auth/LoginScreen";
 import SplashScreen from "./screens/misc/SplashScreen";
 import AuthContext from "./context/AuthContext";
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    justifyContent: "center",
-  },
-  background: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    resizeMode: "cover",
-  },
-});
-
 type Props = {};
 
 const App: React.FC<Props> = () => {
-  const [page, togglePage] = React.useState("login");
-
   // the 'Root' stack is the main stack of our program
   const RootStack = createStackNavigator<RootStackParamList>();
 
