@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   card: {
-    width: "90%",
+    flex: 1,
   },
   backdrop: {
     backgroundColor: "rgba(0, 0, 0, 0.5)",
@@ -40,32 +40,50 @@ const styles = StyleSheet.create({
   },
 });
 
-type propObject = {
-  name: String;
-  todos: Array;
-};
+//type propObject = {
+//  name: String;
+//  todos: Array;
+//};
 
-const homePage = (props: propObject) => {
+const homePage = () => {
   let todoList;
   const [showForm, toggleShowForm] = React.useState(false);
   const [date, setDate] = React.useState(new Date());
   const [newTitle, handleTitle] = React.useState("");
   const [newDesc, handleDesc] = React.useState("");
+  const [todos, handleTodo] = React.useState([
+    {
+      id: 0,
+      title: "go to the gym",
+      desc: "",
+      date: new Date(),
+    },
+    {
+      id: 1,
+      title: "finish CS2040S problem set",
+      desc: "",
+      date: new Date(),
+    },
+    {
+      id: 2,
+      title: "buy birthday present for Mom",
+      desc: "",
+      date: new Date(),
+    },
+  ]);
 
   // Creates each todo list item
   const renderItem = ({ item, index }) => (
     <ListItem
       title={`${index + 1}: ${item.title}`}
       description={item.desc}
-      onPress={() =>
-        props.handleTodo(props.todos.filter((td) => td.id !== item.id))
-      }
+      onPress={() => handleTodo(todos.filter((td) => td.id !== item.id))}
     />
   );
 
   // the actual list component, could be abstracted away into its own component file
   // TODO: implement order by and filter, default order by date
-  if (props.todos === undefined || props.todos === []) {
+  if (todos === undefined || todos === []) {
     todoList = (
       <Text appearance="hint" category="c2">
         You have no to dos! Click the button above to start adding some!
@@ -74,7 +92,7 @@ const homePage = (props: propObject) => {
   } else {
     todoList = (
       <List
-        data={props.todos}
+        data={todos}
         ItemSeparatorComponent={Divider}
         renderItem={renderItem}
       />
@@ -83,8 +101,8 @@ const homePage = (props: propObject) => {
 
   // function for adding todos, resetting state
   const addTodo = () => {
-    props.todos.push({
-      id: props.todos.length,
+    todos.push({
+      id: todos.length,
       title: newTitle,
       desc: newDesc,
       date: date,
@@ -93,7 +111,7 @@ const homePage = (props: propObject) => {
     handleDesc("");
     setDate(new Date());
     toggleShowForm(false);
-    return props.todos;
+    return todos;
   };
 
   const filterIcon = (props) => <Icon {...props} name="funnel" />;
@@ -106,7 +124,7 @@ const homePage = (props: propObject) => {
         <Text style={styles.title} category="h1">
           Productivity Pets!
         </Text>
-        <Text>Welcome to your homepage, {props.name}</Text>
+        <Text>Welcome to your homepage!</Text>
         <Divider />
         <ButtonGroup size="small">
           <Button accessoryRight={filterIcon}>Filter</Button>
@@ -144,7 +162,7 @@ const homePage = (props: propObject) => {
             <View style={styles.buttongroup}>
               <Button
                 style={styles.button}
-                onPress={() => props.handleTodo(addTodo())}
+                onPress={() => handleTodo(addTodo())}
               >
                 Submit
               </Button>

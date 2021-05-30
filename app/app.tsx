@@ -1,84 +1,130 @@
-import { registerRootComponent } from 'expo';
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { ImageBackground, StyleSheet } from 'react-native';
-import * as eva from '@eva-design/eva';
-import { EvaIconsPack } from '@ui-kitten/eva-icons';
+// official imports -> 3rd party imports
+import { registerRootComponent } from "expo";
+import { StatusBar } from "expo-status-bar";
+import { ImageBackground, StyleSheet } from "react-native";
+import React, { useEffect, useMemo, useReducer } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import * as eva from "@eva-design/eva";
 import {
   ApplicationProvider,
   IconRegistry,
-  Layout
-} from '@ui-kitten/components';
+  Layout,
+} from "@ui-kitten/components";
+import { EvaIconsPack } from "@ui-kitten/eva-icons";
 
-import SignUp from './pages/signup';
-import LoginPage from './pages/loginpage';
-import HomePage from './pages/home';
+// our own imports ->
+import { RootStackParamList } from "./RootStackParams";
+// import { save, getValueFor } from './utils/SecureStore';
 
-type Props = {};
+// For Zach: please replace this dummy home here! :)
+import HomeScreen from "./screens/main/home.tsx";
+import LoginScreen from "./screens/auth/LoginScreen";
+import SplashScreen from "./screens/misc/SplashScreen";
+import AuthContext from "./context/AuthContext";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    justifyContent: 'center'
+    backgroundColor: "#fff",
+    justifyContent: "center",
   },
   background: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    resizeMode: 'cover'
-  }
+    justifyContent: "center",
+    alignItems: "center",
+    resizeMode: "cover",
+  },
 });
 
-const App: React.FC<Props> = () => {
-  const [page, togglePage] = React.useState('login');
-  const [username, handleUserName] = React.useState('');
-  const [todos, handleTodo] = React.useState([
-    {
-      id: 0,
-      title: 'go to the gym',
-      desc: '',
-      date: new Date()
-    },
-    {
-      id: 1,
-      title: 'finish CS2040S problem set',
-      desc: '',
-      date: new Date()
-    },
-    {
-      id: 2,
-      title: 'buy birthday present for Mom',
-      desc: '',
-      date: new Date()
-    }
-  ]);
+type Props = {};
 
-  const pageToDisplay = () => {
-    if (page === 'signup') {
-      return <SignUp handlePage={togglePage} handleUserName={handleUserName} />;
-    } else if (page === 'login') {
-      return (
-        <LoginPage handlePage={togglePage} handleUserName={handleUserName} />
-      );
-    } else if (page === 'home') {
-      return <HomePage name={username} todos={todos} handleTodo={handleTodo} />;
+const App: React.FC<Props> = () => {
+  const [page, togglePage] = React.useState("login");
+
+  // the 'Root' stack is the main stack of our program
+  const RootStack = createStackNavigator<RootStackParamList>();
+
+  // check if user is logged in
+  // const [isLoading, setIsLoading] = useState<boolean>(true);
+  // used to auth user
+  // const [userToken, setUserToken] = useState<string | null>(null);
+
+  const initialAuthState = {
+    isLoading: false,
+    userName: null,
+    userToken: null,
+  };
+
+  const authReducer = (prevState: any, action: any) => {
+    switch (action.type) {
+      case "RETRIEVE_TOKEN":
+        return {
+          ...prevState,
+          userToken: action.token,
+          isLoading: false,
+        };
+      case "LOGIN":
+        return {
+          ...prevState,
+          userName: action.id,
+          userToken: action.token,
+          isLoading: false,
+        };
+      case "LOGOUT":
+        return {
+          ...prevState,
+          userToken: null,
+          userName: null,
+          isLoading: false,
+        };
     }
   };
 
+  const [authState, dispatch] = useReducer(authReducer, initialAuthState);
+
+  const authContext = useMemo(
+    () => ({
+      signIn: async () => {
+        // await save('userToken', 'sdada');
+        dispatch({ type: "LOGIN", id: "Kevin", token: "sdada" });
+      },
+      signOut: () => {
+        dispatch({ type: "LOGIN", id: null, token: null });
+      },
+    }),
+    []
+  );
+
+  useEffect(() => {
+    // getValueFor('userToken').then(
+    //   tokenVal => {
+    //     dispatch({ type: 'RETRIEVE_TOKEN', token: tokenVal });
+    //   }
+    // );
+  }, []);
+
   return (
-    <ApplicationProvider {...eva} theme={eva.dark}>
+    <>
       <IconRegistry icons={EvaIconsPack} />
-      <Layout style={styles.container}>
-        <ImageBackground
-          source={require('./assets/app-background.jpg')}
-          style={styles.background}
-        >
-          {pageToDisplay()}
-          <StatusBar style="auto" />
-        </ImageBackground>
-      </Layout>
-    </ApplicationProvider>
+      <ApplicationProvider {...eva} theme={eva.light}>
+        {authState.isLoading ? (
+          <SplashScreen />
+        ) : (
+          <AuthContext.Provider value={authContext}>
+            <NavigationContainer>
+              <RootStack.Navigator>
+                {authState.userToken ? (
+                  <RootStack.Screen name="Home" component={HomeScreen} />
+                ) : (
+                  <RootStack.Screen name="Login" component={LoginScreen} />
+                )}
+              </RootStack.Navigator>
+            </NavigationContainer>
+          </AuthContext.Provider>
+        )}
+      </ApplicationProvider>
+    </>
   );
 };
 
