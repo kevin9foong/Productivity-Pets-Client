@@ -9,6 +9,7 @@ import * as Google from 'expo-auth-session/providers/google';
 
 // our own imports ->
 import { save, getValueFor } from './utils/SecureStore';
+import { authenticateGoogleAccessToken } from './api/Auth';
 
 import Router from './Router';
 import SplashScreen from './screens/misc/SplashScreen';
@@ -70,7 +71,7 @@ const App: React.FC<Props> = () => {
       userToken => {
         dispatch({ type: 'RETRIEVE_TOKEN', userToken: userToken });
       }
-    );
+    ).catch(err => console.error(err));
   }, []);
 
   useEffect(() => {
@@ -78,10 +79,15 @@ const App: React.FC<Props> = () => {
       // auth data including access token
       const { authentication } = res;
       if (authentication?.accessToken) {
-        console.log(authentication);
-        save('userToken', authentication.accessToken)
-          .then(() => dispatch({ type: 'LOGIN', id: 'Kevin', token: authentication.accessToken }))
-          .catch(err => console.log(err));
+        authenticateGoogleAccessToken(authentication.accessToken)
+          .then(jwt => {
+            if (jwt.data) {
+              save('userToken', 'jwt')
+                .then(() => dispatch({ type: 'LOGIN', id: 'PLACEHOLDER', token: jwt }));
+            } else {
+              console.error('No valid JWT retrieved.');
+            }
+          }).catch(err => console.error(err));
       }
     }
   }, [res, request]);
@@ -90,7 +96,7 @@ const App: React.FC<Props> = () => {
       <>
         <IconRegistry icons={EvaIconsPack} />
         <ApplicationProvider {...eva} theme={eva.light}>
-          {!request || authState.isLoading
+          {!request
           // TODO: fix splash screen with expo splash screen
             ? <SplashScreen />
             : <AuthContext.Provider value={authContext}>
