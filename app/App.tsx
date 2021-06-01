@@ -82,7 +82,7 @@ const App: React.FC<Props> = () => {
         authenticateGoogleAccessToken(authentication.accessToken)
           .then(jwt => {
             if (jwt.data) {
-              save('userToken', 'jwt')
+              save('userToken', jwt.data)
                 .then(() => dispatch({ type: 'LOGIN', id: 'PLACEHOLDER', token: jwt }));
             } else {
               console.error('No valid JWT retrieved.');
