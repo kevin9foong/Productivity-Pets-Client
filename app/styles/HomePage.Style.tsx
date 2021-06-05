@@ -15,6 +15,7 @@ export default StyleSheet.create({
     flex: 1
   },
   buttongroup: {
+    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-around'
   },
@@ -23,6 +24,11 @@ export default StyleSheet.create({
   },
   container: {
     flex: 1,
-    alignItems: 'center'
+    width: '100%',
+    height: '100%'
+  },
+  view: {
+    flexDirection: 'row',
+    flex: 1
   }
 });
