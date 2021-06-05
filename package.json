@@ -1,5 +1,5 @@
 {
-  "main": "./app/app.tsx",
+  "main": "./app/App.tsx",
   "scripts-info": {
     "postinstall": "Automatically sets up husky hooks after yarn install"
   },
@@ -25,8 +25,12 @@
     "@react-navigation/stack": "^5.14.5",
     "@ui-kitten/components": "^5.1.0",
     "@ui-kitten/eva-icons": "^5.1.0",
+    "axios": "^0.21.1",
     "expo": "~41.0.1",
+    "expo-application": "~3.1.2",
+    "expo-auth-session": "~3.2.3",
     "expo-cli": "^4.5.0",
+    "expo-random": "~11.1.2",
     "expo-secure-store": "~10.1.0",
     "expo-status-bar": "~1.0.4",
     "expo-web-browser": "~9.1.0",
