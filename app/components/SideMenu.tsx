@@ -8,9 +8,9 @@ import {
 } from '@ui-kitten/components';
 import styles from '../styles/SideMenu.Styles';
 
-const CalendarIcon = (props) => <Icon {...props} name="calendar-outline" />;
+const CalendarIcon = (props: any) => <Icon {...props} name="calendar-outline" />;
 
-const HomeIcon = (props) => <Icon {...props} name="home-outline" />;
+const HomeIcon = (props: any) => <Icon {...props} name="home-outline" />;
 
 const SideMenu = () => {
   const [selectedIndex, setSelectedIndex] = React.useState(new IndexPath(0));

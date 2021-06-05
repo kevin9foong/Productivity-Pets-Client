@@ -55,10 +55,6 @@ const homePage = () => {
     }
   ]);
 
-  const toggleMenu = () => {
-    setMenuVisible(!menuVisible);
-  };
-
   let menu;
   if (menuVisible) {
     menu = <SideMenu />;
@@ -110,7 +106,7 @@ const homePage = () => {
     <SafeAreaView style={styles.view}>
       {menu}
       <View style={styles.container}>
-      <NavBar toggleMenu={toggleMenu} toggleShowForm={toggleShowForm}/>
+      <NavBar menuVisible={menuVisible} toggleMenu={setMenuVisible} toggleShowForm={toggleShowForm}/>
       <Divider />
         {/* Modal is the form that is shown for adding new tasks */}
         <Modal
