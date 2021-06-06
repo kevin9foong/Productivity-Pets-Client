@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 // For Zach: please replace this dummy home here! :)
-import HomeScreen from './screens/main/home';
+import HomeScreen from './screens/main/HomePage';
 import LoginScreen from './screens/auth/LoginScreen';
 import { generateStackNavigatorWithScreens } from './utils/Navigator';
 

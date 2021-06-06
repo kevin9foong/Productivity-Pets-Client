@@ -12,7 +12,7 @@ import UpcomingDeadlines from '../../components/UpcomingDeadlines';
 import AddTask from '../../components/AddTask';
 import DailySchedule from '../../components/DailySchedule';
 
-const homePage = () => {
+const HomePage = () => {
   const [menuVisible, setMenuVisible] = React.useState(false);
   const [showForm, toggleShowForm] = React.useState(false);
   const [todos, handleTodo] = React.useState([
@@ -99,4 +99,4 @@ const homePage = () => {
   );
 };
 
-export default homePage;
+export default HomePage;
