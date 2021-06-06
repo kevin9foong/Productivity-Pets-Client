@@ -15,16 +15,16 @@ const LoginScreen: React.FC<LoginScreenProps> = () => {
 
   return (
     <Layout style={LoginStyles.container}>
-        <LoginAvatar
-            greetingMessage={user ? `Welcome ${user.name}` : 'Welcome Stranger!'}
-            avatarImgSource={user?.avatarUri}
-            actionMessage={user ? undefined : 'Please log in to continue.'}
-             />
-        <IconButton
-            iconName='google'
-            buttonText='Login with Google'
-            handleButtonPress={signIn}
-            />
+      <LoginAvatar
+        greetingMessage={user ? `Welcome ${user.name}` : 'Welcome Stranger!'}
+        avatarImgSource={user?.avatarUri}
+        actionMessage={user ? undefined : 'Please log in to continue.'}
+      />
+      <IconButton
+        iconName="google"
+        buttonText="Login with Google"
+        handleButtonPress={signIn}
+      />
     </Layout>
   );
 };
