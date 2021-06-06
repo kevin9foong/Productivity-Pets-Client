@@ -14,6 +14,7 @@ import { authenticateGoogleAccessToken } from './api/Auth';
 import Router from './Router';
 import SplashScreen from './screens/misc/SplashScreen';
 import AuthContext from './context/AuthContext';
+import HomePage from './screens/main/home';
 
 type Props = {};
 
@@ -103,14 +104,15 @@ const App: React.FC<Props> = () => {
     <>
       <IconRegistry icons={EvaIconsPack} />
       <ApplicationProvider {...eva} theme={eva.light}>
-        {!request ? (
+        {/* {!request ? (
           // TODO: fix splash screen with expo splash screen
           <SplashScreen />
         ) : (
           <AuthContext.Provider value={authContext}>
             <Router isLoggedIn={authState.userToken} />
           </AuthContext.Provider>
-        )}
+        )} */}
+        <HomePage />
       </ApplicationProvider>
     </>
   );

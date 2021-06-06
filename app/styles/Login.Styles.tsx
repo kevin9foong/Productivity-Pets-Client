@@ -1,10 +1,10 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'space-evenly',
-    flexDirection: 'column'
-  }
+    alignItems: "center",
+    justifyContent: "space-evenly",
+    flexDirection: "column",
+  },
 });

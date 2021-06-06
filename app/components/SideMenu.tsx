@@ -1,14 +1,10 @@
-import React from 'react';
-import {
-  Icon,
-  Layout,
-  MenuItem,
-  IndexPath,
-  Menu
-} from '@ui-kitten/components';
-import styles from '../styles/SideMenu.Styles';
+import React from "react";
+import { Icon, Layout, MenuItem, IndexPath, Menu } from "@ui-kitten/components";
+import styles from "../styles/SideMenu.Styles";
 
-const CalendarIcon = (props: any) => <Icon {...props} name="calendar-outline" />;
+const CalendarIcon = (props: any) => (
+  <Icon {...props} name="calendar-outline" />
+);
 
 const HomeIcon = (props: any) => <Icon {...props} name="home-outline" />;
 
@@ -20,8 +16,8 @@ const SideMenu = () => {
       selectedIndex={selectedIndex}
       onSelect={(index) => setSelectedIndex(index)}
     >
-      <MenuItem style={styles.item} accessoryLeft={HomeIcon} />
-      <MenuItem style={styles.item} accessoryLeft={CalendarIcon} />
+      <MenuItem accessoryLeft={HomeIcon} />
+      <MenuItem accessoryLeft={CalendarIcon} />
     </Menu>
   );
 

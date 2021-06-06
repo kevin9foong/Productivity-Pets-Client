@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 import {
   Icon,
   Layout,
   TopNavigation,
-  TopNavigationAction
-} from '@ui-kitten/components';
+  TopNavigationAction,
+} from "@ui-kitten/components";
 
 const AddIcon = (props: any) => <Icon {...props} name="plus" />;
 
@@ -16,15 +16,16 @@ const MenuIcon = (props: any) => <Icon {...props} name="menu-outline" />;
 // const LogoutIcon = (props) => <Icon {...props} name="log-out" />;
 
 type NavbarProps = {
-  menuVisible: Boolean,
-  toggleMenu: Function,
-  toggleShowForm: Function,
-}
+  menuVisible: Boolean;
+  toggleMenu: Function;
+  toggleShowForm: Function;
+};
 
 const NavBar = ({ menuVisible, toggleMenu, toggleShowForm }: NavbarProps) => {
   const renderRightActions = () => (
     <React.Fragment>
-      <TopNavigationAction icon={AddIcon}
+      <TopNavigationAction
+        icon={AddIcon}
         onPress={() => toggleShowForm(true)}
       />
     </React.Fragment>

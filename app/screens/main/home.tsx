@@ -1,161 +1,99 @@
-import React from 'react';
+import React from "react";
 import {
   Text,
-  Card,
   Divider,
-  ListItem,
-  List,
-  Button,
-  Modal,
-  Input,
-  Datepicker
-} from '@ui-kitten/components';
-import { View, Keyboard, SafeAreaView } from 'react-native';
-import styles from '../../styles/HomePage.Style';
-import NavBar from '../../components/NavBar';
-import SideMenu from '../../components/SideMenu';
-
-type todoObject = {
-  id: number;
-  title: string;
-  desc: string;
-  date: Date;
-};
-
-type renderitem = {
-  item: todoObject;
-  index: number;
-};
+} from "@ui-kitten/components";
+import { View, SafeAreaView } from "react-native";
+import styles from "../../styles/HomePage.Style";
+import NavBar from "../../components/NavBar";
+import SideMenu from "../../components/SideMenu";
+import Pet from "../../components/Pet";
+import UpcomingDeadlines from "../../components/UpcomingDeadlines";
+import AddTask from "../../components/AddTask";
+import DailySchedule from "../../components/DailySchedule";
 
 const homePage = () => {
-  let todoList;
   const [menuVisible, setMenuVisible] = React.useState(false);
   const [showForm, toggleShowForm] = React.useState(false);
-  const [date, setDate] = React.useState(new Date());
-  const [newTitle, handleTitle] = React.useState('');
-  const [newDesc, handleDesc] = React.useState('');
   const [todos, handleTodo] = React.useState([
     {
       id: 0,
-      title: 'go to the gym',
-      desc: '',
-      date: new Date()
+      title: "go to the gym",
+      desc: "",
+      date: new Date(),
     },
     {
       id: 1,
-      title: 'finish CS2040S problem set',
-      desc: '',
-      date: new Date()
+      title: "finish CS2040S problem set",
+      desc: "",
+      date: new Date(),
     },
     {
       id: 2,
-      title: 'buy birthday present for Mom',
-      desc: '',
-      date: new Date()
-    }
+      title: "buy birthday present for Mom",
+      desc: "",
+      date: new Date(),
+    },
   ]);
+  const [schedule, handleSchedule] = React.useState([
+    {
+      title: "homework",
+      startHour: 9,
+      startMinute: 30,
+      endHour: 11,
+      endMinute: 0,
+      date: new Date,
+    }
+  ])
+
+  const sortTodos = (a: Date, b: Date) => {
+    return a.getDate() - b.getDate() !== 0 
+      ?  a.getDate() - b.getDate()
+      : a.getMonth() - b.getMonth() !== 0
+      ? a.getMonth() - b.getMonth() 
+      : 0;
+  }
 
   let menu;
   if (menuVisible) {
     menu = <SideMenu />;
   }
 
-  // Creates each todo list item
-  const renderItem = ({ item, index }: renderitem) => (
-    <ListItem
-      title={`${index + 1}: ${item.title}`}
-      description={item.desc}
-      onPress={() => handleTodo(todos.filter((td) => td.id !== item.id))}
-    />
-  );
-
-  // the actual list component, could be abstracted away into its own component file
-  // TODO: implement order by and filter, default order by date
-  if (todos === undefined || todos === []) {
-    todoList = (
-      <Text appearance="hint" category="c2">
-        You have no to dos! Click the button above to start adding some!
-      </Text>
-    );
-  } else {
-    todoList = (
-      <List
-        data={todos}
-        ItemSeparatorComponent={Divider}
-        renderItem={renderItem}
-      />
-    );
-  }
-
-  // function for adding todos, resetting state
-  const addTodo = () => {
-    todos.push({
-      id: todos.length,
-      title: newTitle,
-      desc: newDesc,
-      date: date
-    });
-    handleTitle('');
-    handleDesc('');
-    setDate(new Date());
-    toggleShowForm(false);
-    return todos;
-  };
-
   return (
     <SafeAreaView style={styles.view}>
       {menu}
       <View style={styles.container}>
-      <NavBar menuVisible={menuVisible} toggleMenu={setMenuVisible} toggleShowForm={toggleShowForm}/>
-      <Divider />
+        <NavBar
+          menuVisible={menuVisible}
+          toggleMenu={setMenuVisible}
+          toggleShowForm={toggleShowForm}
+        />
+        <Divider style={styles.divider} />
+        <Pet />
+
         {/* Modal is the form that is shown for adding new tasks */}
-        <Modal
-          visible={showForm}
-          backdropStyle={styles.backdrop}
-          onBackdropPress={() => toggleShowForm(false)}
-          style={styles.modal}
-        >
-          <Card disabled={true}>
-            <Text category="h1">Add a task here</Text>
-            <Input
-              style={styles.input}
-              placeholder="Task"
-              onChangeText={(text) => handleTitle(text)}
-            />
-            <Input
-              style={styles.input}
-              multiline={true}
-              placeholder="Additional Description"
-              onChangeText={(text) => handleDesc(text)}
-            />
-            <Datepicker
-              min={new Date()}
-              date={date}
-              onSelect={(newDate) => setDate(newDate)}
-              onFocus={() => Keyboard.dismiss()}
-            />
-            <View style={styles.buttongroup}>
-              <Button
-                style={styles.button}
-                onPress={() => handleTodo(addTodo())}
-              >
-                Submit
-              </Button>
-              <Button
-                style={styles.button}
-                appearance="outline"
-                onPress={() => toggleShowForm(false)}
-              >
-                Cancel
-              </Button>
-            </View>
-          </Card>
-        </Modal>
-        <Text style={styles.title} category="h2">
-          Your schedule for today
+        <AddTask
+          showForm={showForm}
+          toggleShowForm={toggleShowForm}
+          todos={todos}
+          handleTodo={handleTodo}
+          schedule={schedule}
+          handleSchedule={handleSchedule}
+        />
+
+        <Text style={styles.title} category="h5">
+          Daily Schedule
+        </Text>
+        <DailySchedule schedule={schedule} handleSchedule={handleSchedule} />
+
+        <Text style={styles.title} category="h5">
+          Upcoming Deadlines
         </Text>
         {/* to do list rendered here */}
-        {todoList}
+        <UpcomingDeadlines
+          todos={todos.sort((a, b) => sortTodos(a.date, b.date))}
+          handleTodo={handleTodo}
+        />
       </View>
     </SafeAreaView>
   );
