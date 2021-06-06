@@ -103,14 +103,16 @@ const App: React.FC<Props> = () => {
     <>
       <IconRegistry icons={EvaIconsPack} />
       <ApplicationProvider {...eva} theme={eva.light}>
-        {!request ? (
+        {!request
+          ? (
           // TODO: fix splash screen with expo splash screen
           <SplashScreen />
-        ) : (
+            )
+          : (
           <AuthContext.Provider value={authContext}>
             <Router isLoggedIn={authState.userToken} />
           </AuthContext.Provider>
-        )}
+            )}
       </ApplicationProvider>
     </>
   );

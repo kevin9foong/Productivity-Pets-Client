@@ -6,7 +6,6 @@ export const authenticateGoogleAccessToken = (accessToken: string) => {
   const config = {
     headers: {
       Authorization: `Bearer ${accessToken}`
-      //   'Access-Control-Allow-Origin': '*'
     }
   };
   return axios.get(resourceServerAuthURL, config);
