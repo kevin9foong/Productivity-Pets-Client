@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 import { Card, Text } from "@ui-kitten/components";
 
 const Pet = () => {
@@ -13,7 +13,7 @@ const Pet = () => {
 const styles = StyleSheet.create({
   Pet: {
     marginVertical: 10,
-  }
-})
+  },
+});
 
 export default Pet;
