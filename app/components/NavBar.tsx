@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 import {
   Icon,
   Layout,
   TopNavigation,
-  TopNavigationAction,
-} from "@ui-kitten/components";
+  TopNavigationAction
+} from '@ui-kitten/components';
 
 const AddIcon = (props: any) => <Icon {...props} name="plus" />;
 

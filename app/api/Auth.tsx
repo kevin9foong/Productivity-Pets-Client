@@ -1,13 +1,13 @@
-import axios from "axios";
+import axios from 'axios';
 
-const resourceServerAuthURL = "http://localhost:3000/auth/google";
+const resourceServerAuthURL = 'http://localhost:3000/auth/google';
 
 export const authenticateGoogleAccessToken = (accessToken: string) => {
   const config = {
     headers: {
-      Authorization: `Bearer ${accessToken}`,
+      Authorization: `Bearer ${accessToken}`
       //   'Access-Control-Allow-Origin': '*'
-    },
+    }
   };
   return axios.get(resourceServerAuthURL, config);
 };

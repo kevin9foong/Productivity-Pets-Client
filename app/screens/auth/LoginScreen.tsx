@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { Layout } from "@ui-kitten/components";
-import LoginStyles from "../../styles/Login.Styles";
-import IconButton from "../../components/IconButton";
-import LoginAvatar from "../../components/LoginAvatar";
-import { IUser } from "../../types/UserTypes";
-import AuthContext from "../../context/AuthContext";
+import React, { useState } from 'react';
+import { Layout } from '@ui-kitten/components';
+import LoginStyles from '../../styles/Login.Styles';
+import IconButton from '../../components/IconButton';
+import LoginAvatar from '../../components/LoginAvatar';
+import { IUser } from '../../types/UserTypes';
+import AuthContext from '../../context/AuthContext';
 
 type LoginScreenProps = {};
 
@@ -16,9 +16,9 @@ const LoginScreen: React.FC<LoginScreenProps> = () => {
   return (
     <Layout style={LoginStyles.container}>
       <LoginAvatar
-        greetingMessage={user ? `Welcome ${user.name}` : "Welcome Stranger!"}
+        greetingMessage={user ? `Welcome ${user.name}` : 'Welcome Stranger!'}
         avatarImgSource={user?.avatarUri}
-        actionMessage={user ? undefined : "Please log in to continue."}
+        actionMessage={user ? undefined : 'Please log in to continue.'}
       />
       <IconButton
         iconName="google"

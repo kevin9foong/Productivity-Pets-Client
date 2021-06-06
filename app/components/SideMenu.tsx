@@ -1,6 +1,5 @@
-import React from "react";
-import { Icon, Layout, MenuItem, IndexPath, Menu } from "@ui-kitten/components";
-import styles from "../styles/SideMenu.Styles";
+import React from 'react';
+import { Icon, Layout, MenuItem, IndexPath, Menu } from '@ui-kitten/components';
 
 const CalendarIcon = (props: any) => (
   <Icon {...props} name="calendar-outline" />

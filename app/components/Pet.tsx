@@ -1,6 +1,12 @@
-import React from "react";
-import { StyleSheet } from "react-native";
-import { Card, Text } from "@ui-kitten/components";
+import React from 'react';
+import { StyleSheet } from 'react-native';
+import { Card, Text } from '@ui-kitten/components';
+
+const styles = StyleSheet.create({
+  Pet: {
+    marginVertical: 10
+  }
+});
 
 const Pet = () => {
   return (
@@ -9,11 +15,4 @@ const Pet = () => {
     </Card>
   );
 };
-
-const styles = StyleSheet.create({
-  Pet: {
-    marginVertical: 10,
-  },
-});
-
 export default Pet;

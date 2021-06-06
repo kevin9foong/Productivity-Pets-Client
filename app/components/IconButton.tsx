@@ -1,7 +1,7 @@
-import React from "react";
-import { Layout } from "@ui-kitten/components";
-import { FontAwesome } from "@expo/vector-icons";
-import styles from "../styles/IconButton.Styles";
+import React from 'react';
+import { Layout } from '@ui-kitten/components';
+import { FontAwesome } from '@expo/vector-icons';
+import styles from '../styles/IconButton.Styles';
 
 type IconButtonProps = {
   iconName: keyof typeof FontAwesome.glyphMap;
@@ -12,7 +12,7 @@ type IconButtonProps = {
 const IconButton: React.FC<IconButtonProps> = ({
   iconName,
   handleButtonPress,
-  buttonText,
+  buttonText
 }: IconButtonProps) => {
   return (
     <Layout style={styles.container}>

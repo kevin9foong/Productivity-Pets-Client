@@ -1,16 +1,16 @@
-import React from "react";
+import React from 'react';
 import {
   Text,
-  Divider,
-} from "@ui-kitten/components";
-import { View, SafeAreaView } from "react-native";
-import styles from "../../styles/HomePage.Style";
-import NavBar from "../../components/NavBar";
-import SideMenu from "../../components/SideMenu";
-import Pet from "../../components/Pet";
-import UpcomingDeadlines from "../../components/UpcomingDeadlines";
-import AddTask from "../../components/AddTask";
-import DailySchedule from "../../components/DailySchedule";
+  Divider
+} from '@ui-kitten/components';
+import { View, SafeAreaView } from 'react-native';
+import styles from '../../styles/HomePage.Style';
+import NavBar from '../../components/NavBar';
+import SideMenu from '../../components/SideMenu';
+import Pet from '../../components/Pet';
+import UpcomingDeadlines from '../../components/UpcomingDeadlines';
+import AddTask from '../../components/AddTask';
+import DailySchedule from '../../components/DailySchedule';
 
 const homePage = () => {
   const [menuVisible, setMenuVisible] = React.useState(false);
@@ -18,41 +18,41 @@ const homePage = () => {
   const [todos, handleTodo] = React.useState([
     {
       id: 0,
-      title: "go to the gym",
-      desc: "",
-      date: new Date(),
+      title: 'go to the gym',
+      desc: '',
+      date: new Date()
     },
     {
       id: 1,
-      title: "finish CS2040S problem set",
-      desc: "",
-      date: new Date(),
+      title: 'finish CS2040S problem set',
+      desc: '',
+      date: new Date()
     },
     {
       id: 2,
-      title: "buy birthday present for Mom",
-      desc: "",
-      date: new Date(),
-    },
+      title: 'buy birthday present for Mom',
+      desc: '',
+      date: new Date()
+    }
   ]);
   const [schedule, handleSchedule] = React.useState([
     {
-      title: "homework",
+      title: 'homework',
       startHour: 9,
       startMinute: 30,
       endHour: 11,
       endMinute: 0,
-      date: new Date,
+      date: new Date()
     }
-  ])
+  ]);
 
   const sortTodos = (a: Date, b: Date) => {
-    return a.getDate() - b.getDate() !== 0 
-      ?  a.getDate() - b.getDate()
+    return a.getDate() - b.getDate() !== 0
+      ? a.getDate() - b.getDate()
       : a.getMonth() - b.getMonth() !== 0
-      ? a.getMonth() - b.getMonth() 
-      : 0;
-  }
+        ? a.getMonth() - b.getMonth()
+        : 0;
+  };
 
   let menu;
   if (menuVisible) {

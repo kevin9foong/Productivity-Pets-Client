@@ -1,19 +1,19 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   title: {
-    margin: 5,
+    margin: 5
   },
   container: {
     flex: 1,
-    width: "100%",
-    height: "100%",
+    width: '100%',
+    height: '100%'
   },
   view: {
-    flexDirection: "row",
-    flex: 1,
+    flexDirection: 'row',
+    flex: 1
   },
   divider: {
-    marginBottom: 5,
-  },
+    marginBottom: 5
+  }
 });

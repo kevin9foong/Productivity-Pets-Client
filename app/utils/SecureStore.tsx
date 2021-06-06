@@ -1,6 +1,6 @@
 // Utility functions for access iOS keychain services & Android sharedPreferences
 // Abstract SecureStore
-import * as SecureStore from "expo-secure-store";
+import * as SecureStore from 'expo-secure-store';
 
 // returns a promise
 export const save = (

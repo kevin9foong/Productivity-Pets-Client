@@ -1,5 +1,5 @@
-import React from "react";
-import { ListItem, List, Text, Divider } from "@ui-kitten/components";
+import React from 'react';
+import { ListItem, List, Text, Divider } from '@ui-kitten/components';
 
 type todoObject = {
   id: number;

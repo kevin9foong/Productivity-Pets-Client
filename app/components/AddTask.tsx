@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Text,
   Card,
@@ -6,11 +6,11 @@ import {
   Modal,
   Input,
   Datepicker,
-  CheckBox,
-} from "@ui-kitten/components";
-import { View, Keyboard } from "react-native";
-import styles from "../styles/AddTask.Style";
-import DateTimePicker from "@react-native-community/datetimepicker";
+  CheckBox
+} from '@ui-kitten/components';
+import { View, Keyboard } from 'react-native';
+import styles from '../styles/AddTask.Style';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 type todoObject = {
   id: number;
@@ -43,11 +43,11 @@ const AddTask = ({
   todos,
   handleTodo,
   schedule,
-  handleSchedule,
+  handleSchedule
 }: PropObject) => {
   const [date, setDate] = React.useState(new Date());
-  const [newTitle, handleTitle] = React.useState("");
-  const [newDesc, handleDesc] = React.useState("");
+  const [newTitle, handleTitle] = React.useState('');
+  const [newDesc, handleDesc] = React.useState('');
   const [showTime, toggleTime] = React.useState(false);
   const [startTime, handleStartTime] = React.useState(new Date());
   const [endTime, handleEndTime] = React.useState(new Date());
@@ -58,10 +58,10 @@ const AddTask = ({
       id: todos.length,
       title: newTitle,
       desc: newDesc,
-      date: date,
+      date: date
     });
-    handleTitle("");
-    handleDesc("");
+    handleTitle('');
+    handleDesc('');
     setDate(new Date());
     toggleShowForm(false);
     return todos;
@@ -74,10 +74,10 @@ const AddTask = ({
       startMinute: startTime.getMinutes(),
       endHour: endTime.getHours(),
       endMinute: endTime.getMinutes(),
-      date: date,
+      date: date
     });
-    handleTitle("");
-    handleDesc("");
+    handleTitle('');
+    handleDesc('');
     handleStartTime(new Date());
     handleEndTime(new Date());
     setDate(new Date());
@@ -127,7 +127,7 @@ const AddTask = ({
                 style={styles.input}
                 mode="time"
                 value={startTime}
-                onChange={(e, date) =>
+                onChange={(_: any, date: Date | undefined) =>
                   date !== undefined ? handleStartTime(date) : {}
                 }
               />
@@ -138,7 +138,7 @@ const AddTask = ({
                 style={styles.input}
                 mode="time"
                 value={endTime}
-                onChange={(e, date) =>
+                onChange={(_: any, date: Date | undefined) =>
                   date !== undefined ? handleEndTime(date) : {}
                 }
               />
