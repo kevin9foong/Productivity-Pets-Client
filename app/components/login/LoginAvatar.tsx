@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
-import styles from '../styles/LoginAvatar.Styles';
+import styles from '../../styles/LoginAvatar.Styles';
 import { Text, Layout } from '@ui-kitten/components';
 
 type LoginAvatarProps = {

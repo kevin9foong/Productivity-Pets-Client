@@ -1,8 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-// For Zach: please replace this dummy home here! :)
 import HomeScreen from './screens/main/HomePage';
 import LoginScreen from './screens/auth/LoginScreen';
 import { generateStackNavigatorWithScreens } from './utils/Navigator';
@@ -28,18 +28,24 @@ const AuthStack = createStackNavigator<AuthStackParamList>();
 
 const MainStack = createStackNavigator<MainStackParamList>();
 
-type RouterProps = {
-  isLoggedIn: boolean;
+type OwnProps = {
+  userToken: string;
 };
 
-const Router: React.FC<RouterProps> = ({ isLoggedIn }: RouterProps) => {
+const Router: React.FC<OwnProps> = ({ userToken }: OwnProps) => {
+  console.log('UserToken', userToken);
+
   return (
     <NavigationContainer>
-      {isLoggedIn
+      {userToken
         ? generateStackNavigatorWithScreens(MainStack, mainScreens)
         : generateStackNavigatorWithScreens(AuthStack, authScreens)}
     </NavigationContainer>
   );
 };
 
-export default Router;
+const mapStateToProps = (state: any) => ({
+  userToken: state.auth.userToken
+});
+
+export default connect(mapStateToProps)(Router);

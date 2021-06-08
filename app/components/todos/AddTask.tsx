@@ -9,7 +9,7 @@ import {
   CheckBox
 } from '@ui-kitten/components';
 import { View, Keyboard } from 'react-native';
-import styles from '../styles/AddTask.Style';
+import styles from '../../styles/AddTask.Style';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 type todoObject = {

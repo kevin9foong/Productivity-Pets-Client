@@ -5,12 +5,12 @@ import {
 } from '@ui-kitten/components';
 import { View, SafeAreaView } from 'react-native';
 import styles from '../../styles/HomePage.Style';
-import NavBar from '../../components/NavBar';
-import SideMenu from '../../components/SideMenu';
-import Pet from '../../components/Pet';
-import UpcomingDeadlines from '../../components/UpcomingDeadlines';
-import AddTask from '../../components/AddTask';
-import DailySchedule from '../../components/DailySchedule';
+import NavBar from '../../components/navigation/NavBar';
+import SideMenu from '../../components/navigation/SideMenu';
+import Pet from '../../components/game/Pet';
+import UpcomingDeadlines from '../../components/todos/UpcomingDeadlines';
+import AddTask from '../../components/todos/AddTask';
+import DailySchedule from '../../components/todos/DailySchedule';
 
 const HomePage = () => {
   const [menuVisible, setMenuVisible] = React.useState(false);
