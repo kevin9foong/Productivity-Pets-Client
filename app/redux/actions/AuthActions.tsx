@@ -1,9 +1,15 @@
 import { IAction } from './ActionType';
 
-export const login = (userId: string, userToken: string): IAction => ({
+export const login = (
+  userId: string,
+  userName: string,
+  userAvatar: string,
+  userToken: string): IAction => ({
   type: 'LOGIN',
   payload: {
     userId,
+    userName,
+    userAvatar,
     userToken
   }
 });

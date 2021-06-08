@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import HomeScreen from './screens/main/HomePage';
-import LoginScreen from './screens/auth/LoginScreen';
+import LoginScreen from './screens/auth/Login';
 import { generateStackNavigatorWithScreens } from './utils/Navigator';
 
 // Defines the screens on the root path
@@ -33,8 +33,6 @@ type OwnProps = {
 };
 
 const Router: React.FC<OwnProps> = ({ userToken }: OwnProps) => {
-  console.log('UserToken', userToken);
-
   return (
     <NavigationContainer>
       {userToken

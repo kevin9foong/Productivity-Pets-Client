@@ -17,12 +17,18 @@ export default (prevState = INITIAL_AUTH_STATE, action: IAction) => {
     case 'LOGIN':
       return {
         ...prevState,
-        userToken: action.payload.userToken
+        userToken: action.payload.userToken,
+        userId: action.payload.userId,
+        userName: action.payload.userName,
+        userAvatar: action.payload.userAvatar
       };
     case 'LOGOUT':
       return {
         ...prevState,
-        userToken: null
+        userToken: null,
+        userId: null,
+        userName: null,
+        userAvatar: null
       };
     default:
       return prevState;

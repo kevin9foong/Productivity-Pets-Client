@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { connect } from 'react-redux';
 import * as WebBrowser from 'expo-web-browser';
 import * as Google from 'expo-auth-session/providers/google';
@@ -9,7 +9,7 @@ import { IAction } from './redux/actions/ActionType';
 import { save, getValueFor } from './utils/SecureStore';
 import { authenticateGoogleAccessToken } from './api/Auth';
 
-import SplashScreen from './screens/general/SplashScreen';
+import SplashScreen from './screens/misc/SplashScreen';
 import Router from './Router';
 
 WebBrowser.maybeCompleteAuthSession();
@@ -18,7 +18,12 @@ type OwnProps = {
 }
 
 type DispatchProps = {
-  login: (userId: string, userToken: string) => IAction,
+  login: (
+    userId: string,
+    userName: string,
+    userAvatar: string,
+    userToken: string
+    ) => IAction,
   logout: () => IAction,
   retrieveToken: (userToken: string | null) => IAction
 };
@@ -31,10 +36,14 @@ const AuthContainer = (props: OwnProps & DispatchProps) => {
       '455617521342-htliucvfap8nuqqoid8l31k463luh0ii.apps.googleusercontent.com'
   });
 
+  // temp solution for triggering splash screen.
+  const [isLoading, setIsLoading] = useState(false);
+
   const authContext = useMemo(
     () => ({
       login: () => {
         promptAsync();
+        setIsLoading(true);
       },
       logout: () => {
         props.logout();
@@ -44,30 +53,33 @@ const AuthContainer = (props: OwnProps & DispatchProps) => {
   );
 
   // check if userToken exists in secure store
-  useEffect(() => {
-    getValueFor('userToken')
-      .then((userToken) => {
-        props.retrieveToken(userToken);
-      })
-      .catch((err) => console.error(err));
-  }, []);
+  // useEffect(() => {
+  //   getValueFor('userToken')
+  //     .then((userToken) => {
+  //       props.retrieveToken(userToken);
+  //     })
+  //     .catch((err) => console.error(err));
+  // }, []);
 
   // once accessToken is valid, retreives token for use with server
   useEffect(() => {
     if (res?.type === 'success') {
-      // auth data including access token
       const { authentication } = res;
       if (authentication?.accessToken) {
         authenticateGoogleAccessToken(authentication.accessToken)
-          .then((jwt) => {
-            if (jwt.data) {
-              save('userToken', jwt.data).then(() =>
-                props.login('PLACEHOLDER ID', jwt.data)
-              );
+          .then(({ data }) => {
+            if (data && data.userToken) {
+              // save('userToken', data.token).then(() =>
+              props.login(
+                data.userId,
+                data.userName,
+                data.userAvatar,
+                data.userToken);
+              // );
             } else {
               console.error('No valid JWT retrieved.');
             }
-          })
+          }).then(() => setIsLoading(false))
           .catch((err) => console.error(err));
       }
     }
@@ -75,7 +87,7 @@ const AuthContainer = (props: OwnProps & DispatchProps) => {
 
   return (
   <>
-    {!request
+    {!request || isLoading
       ? (
           // TODO: fix splash screen with expo splash screen
           <SplashScreen />
