@@ -1,38 +1,63 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Layout } from '@ui-kitten/components';
+import { Button } from '@ui-kitten/components';
 
 import LoginStyles from '../../styles/Login.Styles';
-import IconButton from '../../components/user/IconButton';
-import LoginAvatar from '../../components/user/Avatar';
-import AuthContext from '../../contexts/AuthContext';
+import { Image, View } from 'react-native';
+import LoginModal from './LoginModal';
 
 type OwnProps = {
-  userName?: string,
-  userAvatar?: string,
-  userId?: string
+  userName?: string;
+  userAvatar?: string;
+  userId?: string;
+  navigation: any;
 };
 
+enum LoginTypes {
+  register = 'REGISTER',
+  login = 'LOGIN',
+}
+
 const LoginScreen: React.FC<OwnProps> = (props: OwnProps) => {
-  const { login } = React.useContext(AuthContext);
+  const [visible, setVisible] = React.useState(false);
+  const [loginType, setLoginType] = React.useState(LoginTypes.login);
+
+  const showModal = (type: LoginTypes): void => {
+    setLoginType(type);
+    setVisible(true);
+  };
 
   return (
-    <Layout style={LoginStyles.container}>
-      <LoginAvatar
-        greetingMessage={props.userName ? `Welcome ${props.userName}` : 'Welcome Stranger!'}
-        avatarImgSource={props.userAvatar}
-        actionMessage={props.userId ? undefined : 'Please log in to continue.'}
+    <View style={LoginStyles.container}>
+      <Image
+        style={LoginStyles.image}
+        source={require('../../assets/logo.png')}
       />
-      <IconButton
-        iconName="google"
-        buttonText="Login with Google"
-        handleButtonPress={login}
+      <View style={LoginStyles.buttonGroup}>
+        <Button
+          onPress={() => showModal(LoginTypes.register)}
+          style={LoginStyles.button}
+        >
+          Register
+        </Button>
+        <Button
+          onPress={() => showModal(LoginTypes.login)}
+          style={LoginStyles.button}
+        >
+          Login
+        </Button>
+      </View>
+      <LoginModal
+        visible={visible}
+        handleEvent={null}
+        type={loginType}
+        setVisible={setVisible}
       />
-    </Layout>
+    </View>
   );
 };
 
-const mapStateToProps = ({ auth } : any) => ({
+const mapStateToProps = ({ auth }: any) => ({
   userName: auth.userName,
   userAvatar: auth.userAvatar,
   userId: auth.userId

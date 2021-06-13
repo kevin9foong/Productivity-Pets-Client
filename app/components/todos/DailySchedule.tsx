@@ -1,6 +1,5 @@
 import React from 'react';
-import { Text, ListItem, List, Divider } from '@ui-kitten/components';
-import CardList from "./CardList";
+import CardList from './CardList';
 
 type scheduleItem = {
   title: String;
@@ -15,7 +14,7 @@ type displayableItem = {
   name: String;
   prefix: String;
   desc: String;
-}
+};
 
 type propObject = {
   schedule: Array<scheduleItem>;
@@ -23,17 +22,21 @@ type propObject = {
 };
 
 const DailySchedule = ({ schedule, handleSchedule }: propObject) => {
-
-  const filterSched = (item: scheduleItem) : boolean => {
+  const filterSched = (item: scheduleItem): boolean => {
     const today = new Date();
     const itemDate = item.date;
-    return itemDate.getDate() === today.getDate() && itemDate.getMonth() === today.getMonth() && itemDate.getFullYear() === today.getFullYear();
+    return (
+      itemDate.getDate() === today.getDate() &&
+      itemDate.getMonth() === today.getMonth() &&
+      itemDate.getFullYear() === today.getFullYear()
+    );
   };
 
-  const formatSched = (item: scheduleItem) : displayableItem => {
+  const formatSched = (item: scheduleItem): displayableItem => {
     return {
-      prefix: `${item.startHour}:${item.startMinute === 0 ? '00' : item.startMinute
-        } - ${item.endHour}:${item.endMinute === 0 ? '00' : item.endMinute}`,
+      prefix: `${item.startHour}:${
+        item.startMinute === 0 ? '00' : item.startMinute
+      } - ${item.endHour}:${item.endMinute === 0 ? '00' : item.endMinute}`,
       name: item.title,
       desc: ''
     };
