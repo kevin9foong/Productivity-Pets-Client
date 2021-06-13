@@ -11,6 +11,7 @@ import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import rootReducer from './redux/reducers/RootReducer';
 
 import AuthContainer from './AuthContainer';
+import HomePage from './screens/main/HomePage';
 
 type Props = {};
 
@@ -21,7 +22,8 @@ const App: React.FC<Props> = () => {
     <Provider store={store}>
       <IconRegistry icons={EvaIconsPack} />
       <ApplicationProvider {...eva} theme={eva.light}>
-        <AuthContainer />
+        {/* <AuthContainer /> */}
+        <HomePage />
       </ApplicationProvider>
     </Provider>
   );
