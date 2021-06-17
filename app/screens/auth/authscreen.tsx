@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Button, Layout } from '@ui-kitten/components';
+import { Button, Layout, useStyleSheet } from '@ui-kitten/components';
 
 import AuthScreenStyles from '../../styles/screens/auth/authscreen.styles';
 import { Image } from 'react-native';
@@ -19,27 +19,31 @@ const LoginScreen: React.FC<StateProps> = (props: StateProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const [authType, setAuthType] = useState<authType>(undefined);
 
+  const ThemedAuthScreenStyles = useStyleSheet(AuthScreenStyles);
+
   const showModal = (authType: authType): void => {
     setAuthType(authType);
     setIsVisible(true);
   };
 
   return (
-    <Layout style={AuthScreenStyles.container}>
-      <Image
-        style={AuthScreenStyles.logo}
-        source={require('../../assets/logo.png')}
-      />
-      <Layout style={AuthScreenStyles.buttonContainer}>
+    <Layout style={ThemedAuthScreenStyles.container}>
+      <Layout style={ThemedAuthScreenStyles.logoContainer}>
+        <Image
+          style={AuthScreenStyles.logo}
+          source={require('../../assets/logo.png')}
+        />
+      </Layout>
+      <Layout style={ThemedAuthScreenStyles.buttonContainer}>
         <Button
           onPress={() => showModal('register')}
-          style={AuthScreenStyles.actionButton}
+          style={ThemedAuthScreenStyles.actionButton}
         >
           Register
         </Button>
         <Button
           onPress={() => showModal('login')}
-          style={AuthScreenStyles.actionButton}
+          style={ThemedAuthScreenStyles.actionButton}
         >
           Login
         </Button>
@@ -48,6 +52,7 @@ const LoginScreen: React.FC<StateProps> = (props: StateProps) => {
         isVisible={isVisible}
         setIsVisible={setIsVisible}
         handleSubmitAuthDetails={() => {}}
+        onRequestClose={() => setIsVisible(false)}
         authType={authType}
       />
     </Layout>

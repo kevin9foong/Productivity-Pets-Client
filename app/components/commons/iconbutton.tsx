@@ -1,28 +1,31 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import { Layout, Button, Icon } from '@ui-kitten/components';
+import { Layout } from '@ui-kitten/components';
+import { FontAwesome } from '@expo/vector-icons';
+import styles from '../../styles/components/commons/iconbuttons.styles';
 
-type StateProps = {
-    buttonText: string,
-    iconName: string
-    onPress: () => void
-}
+type IconButtonProps = {
+  iconName: keyof typeof FontAwesome.glyphMap;
+  handleButtonPress: () => void;
+  buttonText: string;
+};
 
-const styles = StyleSheet.create({
-  button: {
-  }
-});
-
-const IconButton: React.FC<StateProps> = (props: StateProps) => {
+const IconButton: React.FC<IconButtonProps> = ({
+  iconName,
+  handleButtonPress,
+  buttonText
+}: IconButtonProps) => {
   return (
-      <Layout>
-        <Icon name={props.iconName} />
-        <Button
-            style={styles.button}
-            onPress={props.onPress}>
-            {props.buttonText}
-        </Button>
+    <Layout style={styles.container}>
+      <Layout style={styles.buttons}>
+        <FontAwesome.Button
+          name={iconName}
+          backgroundColor="#DD4B39"
+          onPress={handleButtonPress}
+        >
+          {buttonText}
+        </FontAwesome.Button>
       </Layout>
+    </Layout>
   );
 };
 

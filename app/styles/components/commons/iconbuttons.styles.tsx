@@ -2,12 +2,12 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    width: '100%',
+    backgroundColor: 'transparent'
   },
   buttons: {
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    margin: 20,
-    marginBottom: 30
+    width: 'auto',
+    borderRadius: 8
   }
 });
