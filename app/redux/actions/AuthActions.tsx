@@ -4,7 +4,8 @@ export const login = (
   userId: string,
   userName: string,
   userAvatar: string,
-  userToken: string): IAction => ({
+  userToken: string
+): IAction => ({
   type: 'LOGIN',
   payload: {
     userId,

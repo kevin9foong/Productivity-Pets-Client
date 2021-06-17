@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import * as eva from '@eva-design/eva';
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
+import { default as theme } from './custom-theme.json';
 
 // our own imports ->
 import rootReducer from './redux/reducers/RootReducer';
@@ -20,7 +21,7 @@ const App: React.FC<Props> = () => {
   return (
     <Provider store={store}>
       <IconRegistry icons={EvaIconsPack} />
-      <ApplicationProvider {...eva} theme={eva.light}>
+      <ApplicationProvider {...eva} theme={{ ...eva.light, ...theme }}>
         <AuthContainer />
       </ApplicationProvider>
     </Provider>

@@ -14,8 +14,7 @@ import Router from './Router';
 
 WebBrowser.maybeCompleteAuthSession();
 
-type OwnProps = {
-}
+type OwnProps = {};
 
 type DispatchProps = {
   login: (
@@ -23,9 +22,9 @@ type DispatchProps = {
     userName: string,
     userAvatar: string,
     userToken: string
-    ) => IAction,
-  logout: () => IAction,
-  retrieveToken: (userToken: string | null) => IAction
+  ) => IAction;
+  logout: () => IAction;
+  retrieveToken: (userToken: string | null) => IAction;
 };
 
 const AuthContainer = (props: OwnProps & DispatchProps) => {
@@ -74,36 +73,35 @@ const AuthContainer = (props: OwnProps & DispatchProps) => {
                 data.userId,
                 data.userName,
                 data.userAvatar,
-                data.userToken);
+                data.userToken
+              );
               // );
             } else {
               console.error('No valid JWT retrieved.');
             }
-          }).then(() => setIsLoading(false))
+          })
+          .then(() => setIsLoading(false))
           .catch((err) => console.error(err));
       }
     }
   }, [res, request]);
 
   return (
-  <>
-    {!request || isLoading
-      ? (
-          // TODO: fix splash screen with expo splash screen
-          <SplashScreen />
-        )
-      : (
-          <AuthContext.Provider value={authContext}>
-            <Router />
-          </AuthContext.Provider>
-        )}
+    <>
+      {!request || isLoading ? (
+        // TODO: fix splash screen with expo splash screen
+        <SplashScreen />
+      ) : (
+        <AuthContext.Provider value={authContext}>
+          <Router />
+        </AuthContext.Provider>
+      )}
     </>
   );
 };
 
-export default connect(null,
-  {
-    login: login,
-    logout: logout,
-    retrieveToken: retrieveToken
-  })(AuthContainer);
+export default connect(null, {
+  login: login,
+  logout: logout,
+  retrieveToken: retrieveToken
+})(AuthContainer);

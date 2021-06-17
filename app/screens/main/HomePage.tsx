@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  Text,
-  Divider
-} from '@ui-kitten/components';
+import { Text, Divider } from '@ui-kitten/components';
 import { View, SafeAreaView } from 'react-native';
 import styles from '../../styles/HomePage.Style';
 import NavBar from '../../components/navigation/NavBar';
@@ -46,8 +43,8 @@ const HomePage = () => {
       date: new Date()
     }
   ]);
-  
-    const sortTodos = (a: Date, b: Date) => {
+
+  const sortTodos = (a: Date, b: Date) => {
     return a.getDate() - b.getDate() !== 0
       ? a.getDate() - b.getDate()
       : a.getMonth() - b.getMonth() !== 0
@@ -71,7 +68,6 @@ const HomePage = () => {
         />
         <Divider style={styles.divider} />
         <Pet />
-
         {/* Modal is the form that is shown for adding new tasks */}
         <AddTask
           showForm={showForm}
@@ -81,12 +77,10 @@ const HomePage = () => {
           schedule={schedule}
           handleSchedule={handleSchedule}
         />
-
         <Text style={styles.title} category="h5">
           Daily Schedule
         </Text>
         <DailySchedule schedule={schedule} handleSchedule={handleSchedule} />
-
         <Text style={styles.title} category="h5">
           Upcoming Deadlines
         </Text>
@@ -95,8 +89,8 @@ const HomePage = () => {
           todos={todos.sort((a, b) => sortTodos(a.date, b.date))}
           handleTodo={handleTodo}
         />
-        {/* <CardList data={todos.sort((a, b) => sortTodos(a.date, b.date)).map(formatTodo)} />*/};
-        
+        {/* <CardList data={todos.sort((a, b) => sortTodos(a.date, b.date)).map(formatTodo)} /> */}
+        ;
       </View>
     </SafeAreaView>
   );
