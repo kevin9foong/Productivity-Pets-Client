@@ -11,6 +11,7 @@ import Pet from '../../components/game/Pet';
 import UpcomingDeadlines from '../../components/todos/UpcomingDeadlines';
 import AddTask from '../../components/todos/AddTask';
 import DailySchedule from '../../components/todos/DailySchedule';
+// import CardList from '../../components/todos/CardList';
 
 const HomePage = () => {
   const [menuVisible, setMenuVisible] = React.useState(false);
@@ -45,8 +46,8 @@ const HomePage = () => {
       date: new Date()
     }
   ]);
-
-  const sortTodos = (a: Date, b: Date) => {
+  
+    const sortTodos = (a: Date, b: Date) => {
     return a.getDate() - b.getDate() !== 0
       ? a.getDate() - b.getDate()
       : a.getMonth() - b.getMonth() !== 0
@@ -94,6 +95,8 @@ const HomePage = () => {
           todos={todos.sort((a, b) => sortTodos(a.date, b.date))}
           handleTodo={handleTodo}
         />
+        {/* <CardList data={todos.sort((a, b) => sortTodos(a.date, b.date)).map(formatTodo)} />*/};
+        
       </View>
     </SafeAreaView>
   );
