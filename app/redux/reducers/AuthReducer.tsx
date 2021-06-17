@@ -1,4 +1,4 @@
-import { IAction } from '../actions/ActionType';
+import { IAction } from '../actions/authactions';
 
 const INITIAL_AUTH_STATE = {
   userToken: null,

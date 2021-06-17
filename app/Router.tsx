@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import HomeScreen from './screens/main/HomePage';
-import LoginScreen from './screens/auth/Login';
+import HomeScreen from './screens/main/homepage';
+import AuthScreen from './screens/auth/authscreen';
 import { generateStackNavigatorWithScreens } from './utils/Navigator';
 
 // Defines the screens on the root path
@@ -17,7 +17,7 @@ export type MainStackParamList = {
 };
 
 const authScreens = {
-  Login: LoginScreen
+  Login: AuthScreen
 };
 
 const mainScreens = {
@@ -25,7 +25,6 @@ const mainScreens = {
 };
 
 const AuthStack = createStackNavigator<AuthStackParamList>();
-
 const MainStack = createStackNavigator<MainStackParamList>();
 
 type OwnProps = {
@@ -36,8 +35,8 @@ const Router: React.FC<OwnProps> = ({ userToken }: OwnProps) => {
   return (
     <NavigationContainer>
       {userToken
-        ? generateStackNavigatorWithScreens(MainStack, mainScreens)
-        : generateStackNavigatorWithScreens(AuthStack, authScreens)}
+        ? generateStackNavigatorWithScreens(MainStack, mainScreens, false)
+        : generateStackNavigatorWithScreens(AuthStack, authScreens, false)}
     </NavigationContainer>
   );
 };

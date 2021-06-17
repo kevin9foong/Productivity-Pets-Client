@@ -3,18 +3,19 @@ import { connect } from 'react-redux';
 import * as WebBrowser from 'expo-web-browser';
 import * as Google from 'expo-auth-session/providers/google';
 
-import AuthContext from './contexts/AuthContext';
-import { login, logout, retrieveToken } from './redux/actions/AuthActions';
-import { IAction } from './redux/actions/ActionType';
-import { save, getValueFor } from './utils/SecureStore';
-import { authenticateGoogleAccessToken } from './api/Auth';
+import AuthContext from './contexts/authcontext';
+import { login, logout, retrieveToken, IAction } from './redux/actions/authactions';
+
+// import { save, getValueFor } from './utils/SecureStore';
+import { authenticateGoogleAccessToken } from './api/auth';
 
 import SplashScreen from './screens/misc/SplashScreen';
-import Router from './Router';
 
 WebBrowser.maybeCompleteAuthSession();
 
-type OwnProps = {};
+type StateProps = {
+  children: React.ReactNode;
+};
 
 type DispatchProps = {
   login: (
@@ -27,7 +28,7 @@ type DispatchProps = {
   retrieveToken: (userToken: string | null) => IAction;
 };
 
-const AuthContainer = (props: OwnProps & DispatchProps) => {
+const AuthContainer = (props: StateProps & DispatchProps) => {
   const [request, res, promptAsync] = Google.useAuthRequest({
     expoClientId:
       '455617521342-vs3pab8tkpp2stpsc71ruuq2nqteer98.apps.googleusercontent.com',
@@ -75,7 +76,6 @@ const AuthContainer = (props: OwnProps & DispatchProps) => {
                 data.userAvatar,
                 data.userToken
               );
-              // );
             } else {
               console.error('No valid JWT retrieved.');
             }
@@ -88,14 +88,16 @@ const AuthContainer = (props: OwnProps & DispatchProps) => {
 
   return (
     <>
-      {!request || isLoading ? (
+      {!request || isLoading
+        ? (
         // TODO: fix splash screen with expo splash screen
         <SplashScreen />
-      ) : (
+          )
+        : (
         <AuthContext.Provider value={authContext}>
-          <Router />
+          {props.children}
         </AuthContext.Provider>
-      )}
+          )}
     </>
   );
 };

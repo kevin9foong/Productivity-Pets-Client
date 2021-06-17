@@ -1,6 +1,4 @@
-// import { StyleSheet } from 'react-native';
 import { StyleService } from '@ui-kitten/components';
-import theme from '../custom-theme.json';
 
 export default StyleService.create({
   container: {
@@ -9,7 +7,7 @@ export default StyleService.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
-    backgroundColor: theme['color-primary-400'],
+    backgroundColor: 'color-primary-400',
     width: '100%'
   },
   image: {
@@ -40,11 +38,7 @@ export default StyleService.create({
     height: '60%',
     borderTopLeftRadius: 50,
     borderTopRightRadius: 50,
-    backgroundColor: theme['color-primary-100']
-  },
-  bottomButton: {
-    width: '90%',
-    marginBottom: '30%'
+    backgroundColor: 'color-primary-100'
   },
   input: {
     width: '90%',

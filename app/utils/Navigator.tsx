@@ -1,13 +1,17 @@
 import React from 'react';
 
+// we can define React navigator options here!
 // used to minimise nesting to optimize performance
 // TODO: fix this any type.
 export const generateStackNavigatorWithScreens = (
   Stack: any,
-  screensToRender: object
+  screensToRender: object,
+  isHeaderNavigatorShown: boolean
 ) => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{
+      headerShown: isHeaderNavigatorShown
+    }}>
       {Object.entries(screensToRender).map(([screenName, component]) => (
         <Stack.Screen
           key={screenName}
