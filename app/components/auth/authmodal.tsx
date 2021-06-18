@@ -5,7 +5,7 @@ import { Modal } from 'react-native';
 import { authType } from '../../screens/auth/authscreen';
 import authStyles from '../../styles/components/auth/authmodal.styles';
 import AuthContext from '../../contexts/authcontext';
-import IconButton from '../commons/IconButton';
+import IconButton from '../commons/iconbutton';
 
 type StateProps = {
   handleSubmitAuthDetails: any;

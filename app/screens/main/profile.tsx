@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Layout } from '@ui-kitten/components';
 
 import LoginStyles from '../../styles/components/auth/authmodal.styles';
-import IconButton from '../../components/commons/IconButton';
+import IconButton from '../../components/commons/iconbutton';
 import LoginAvatar from '../../components/user/Avatar';
 import AuthContext from '../../contexts/authcontext';
 
